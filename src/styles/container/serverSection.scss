@@ -1,0 +1,44 @@
+
+.server {
+  .serverInfo {
+    padding: 5px;
+    min-width: 340px;
+    width: min-content;
+  }
+
+  .btn {
+    font-size: 20px;
+    padding: 10px;
+    background: var(--list-bg);
+    filter: brightness(var(--brightness-filter));
+    border-radius: 5px;
+    cursor: pointer;
+    transition: color 280ms, transform 280ms, width 280ms;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    height: 25px;
+    cursor: pointer;
+
+    p {
+      font-family: "productSans_Bold";
+      display: inline;
+      font-size: 14px;
+      margin-left: 10px;
+      margin-bottom: 10px;
+      user-select: none;
+    }
+
+    &:hover {
+      color: var(--red);
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      color: var(--red);
+      transform: translateY(-2px) scale(0.8);
+    }
+  }
+}

@@ -1,0 +1,52 @@
+.addServer{
+    margin-top: 20px;
+    .row{
+        gap: 0px;
+        margin-bottom: 0px;
+        &:hover{
+            background: unset;
+        }
+        label, p{
+            width: 100%;
+            grid-column: span 10;
+            padding: 0;
+            display: flex;
+            
+        }
+        input[type='checkbox']{
+            width: 100%;
+            grid-column: span 1;
+        }
+        input[type='checkbox'] + label{
+            width: 100%;
+            grid-column: span 5;
+        }
+        input[type='checkbox']:checked + label{
+            color: var(--cyan);
+        }
+    }
+    .buttonRow{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        button, input[type='button']{
+            margin-left: 20px;
+        }
+    }
+    input{
+        grid-column: span 0;
+    }
+    input[type='checkbox']{
+        display: unset;
+        width: max-content !important;
+    }
+    overflow: hidden;
+
+    button{
+        width: max-content;
+    }
+}
+
+.errRow{
+    grid-template-columns: 1fr !important;
+}

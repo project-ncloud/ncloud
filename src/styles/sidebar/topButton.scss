@@ -1,0 +1,35 @@
+
+
+.mainLogo{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100px;
+    user-select: none;
+    cursor: pointer;
+    color: var(--purple);
+    //background: var(--list-bg);
+
+    .icon{
+        font-size: 5rem;
+        transition: filter 400ms;
+    }
+    p{
+        font-family: steradian_black;
+        font-size: 3rem;
+        margin-left: 10px;
+        letter-spacing: 1px;
+        transition: transform 400ms ease-out;
+    }
+
+    &:hover{
+        .icon{
+            filter: brightness(.2);
+        }
+        p{
+            transform: translateX(-50px);
+        }
+    }
+}

@@ -1,0 +1,198 @@
+@font-face {
+  src: url("./res/fonts/Steradian\ Bold.otf");
+  font-family: "steradian_Bold";
+}
+@font-face {
+  src: url("./res/fonts/Steradian\ Black.otf");
+  font-family: "steradian_Black";
+}
+@font-face {
+  src: url("./res/fonts/Steradian\ Regular.otf");
+  font-family: "steradian_Regular";
+}
+@font-face {
+  src: url("./res/fonts/Product\ Sans\ Bold.ttf");
+  font-family: "productSans_Bold";
+}
+
+@font-face {
+  src: url("./res/fonts/Product\ Sans\ Regular.ttf");
+  font-family: "productSans";
+}
+
+@font-face {
+  src: url("./res/fonts/RobotoMono-SemiBold.ttf");
+  font-family: "mono";
+}
+
+@keyframes loading {
+  0% {
+    opacity: 1;
+    width: 10px;
+    transform: translateX(0px);
+  }
+  40% {
+    opacity: 1;
+    width: 100px;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  80% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+    width: 20px;
+    transform: translateX(390px);
+  }
+}
+
+:root {
+  --backgroundColor: #121922;
+  --subBackgroundColor: #171f2a;
+  --tile-bg: #161d28;
+  --list-bg: #1c242f;
+  --text-color: #f6f7f7;
+  --sub-text-color: #f6f7f7c0;
+  --purple: #95acff;
+  --cyan: #95ffec;
+  --yellow: #fdff95;
+  --red: #ffa895;
+
+  --semi-transparent: #0000009a;
+
+  --brightness-filter: 1.2;
+}
+
+*::selection {
+  color: var(--backgroundColor);
+  background: var(--cyan);
+}
+
+body {
+  background: var(--backgroundColor);
+  margin: 0;
+  position: relative;
+
+  width: 100%;
+  height: 100vh;
+}
+
+.spacer {
+  height: 20px;
+}
+.bigSpacer {
+  height: 70px;
+}
+
+.purple {
+  color: var(--purple);
+}
+
+.purpleBg {
+  background: var(--purple);
+}
+
+.cyan {
+  color: var(--cyan);
+}
+
+.cyanBg {
+  background: var(--cyan);
+}
+
+.yellow {
+  color: var(--yellow);
+}
+
+.yellowBg {
+  background: var(--yellow);
+}
+
+.red {
+  color: var(--red);
+}
+
+.redBg {
+  background: var(--red);
+}
+
+.subBg {
+  background: var(--subBackgroundColor);
+}
+
+a {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.hide {
+  display: none;
+  opacity: 0;
+}
+
+button,
+input,
+input[type="button"] {
+  background: var(--purple);
+  border: 0;
+  border-radius: 0.2em;
+  outline: none;
+  font-family: productSans_bold;
+  font-size: 15px;
+  padding: 0.5em 1.2em 0.5em 1.2em;
+  transition: transform 300ms;
+  box-shadow: 0px 5px 10px #00000010;
+  &:hover {
+    filter: opacity(0.9);
+  }
+  &:active {
+    transform: scale(0.7);
+  }
+}
+
+input:not([type="button"]) {
+  background: var(--list-bg);
+  color: var(--sub-text-color);
+  letter-spacing: 1px;
+  &:hover {
+    filter: opacity(0.9);
+  }
+  &:active {
+    transform: unset;
+  }
+}
+
+.customCheckbox {
+  width: 40px !important;
+  height: 17px !important;
+  border-radius: 100px;
+  background: var(--list-bg);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+  transition: background 280ms;
+  .circle {
+    width: 10px;
+    height: 10px;
+    background: #ffffff2d;
+    border-radius: 100%;
+    margin-left: 5px;
+    margin-top: 0.019rem;
+
+    transition: transform 280ms, background 280ms;
+  }
+}
+
+.checkBox_checked {
+  background: var(--purple);
+  .circle {
+    transform: translateX(calc(100% + 11px));
+    background: var(--semi-transparent);
+  }
+}

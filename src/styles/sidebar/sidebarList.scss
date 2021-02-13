@@ -1,0 +1,14 @@
+
+
+.list{
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    overflow: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}

@@ -1,0 +1,124 @@
+.overlayContainer{
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    background: var(--semi-transparent);
+    display: grid;
+    place-items: center;
+    transition: opacity 280ms;
+    z-index: 69;
+
+}
+
+.overlayWrapper{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: transparent;
+}
+
+.modalContainer{
+    //background: red;
+    //padding-left: 1.2rem;
+}
+
+.ocontainer{
+    min-width: 800px;
+    width: 50vw;
+    height: 70vh;
+    border-radius: 5px;
+    background: var(--backgroundColor);
+
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: 0px 10px 30px #00000031;
+    pointer-events: all;
+    
+}
+
+
+.topBar{
+    //background: red;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    z-index: 9999;
+
+    i{
+        font-size: 1.5rem;
+        color: var(--purple);
+        padding: 5px;
+        border-radius: 4px;
+        transition: background 300ms;
+        &:hover{
+            background: var(--list-bg);
+        }
+    }
+}
+
+.bottomBar{
+    width: calc(100% - 20px);
+    padding: 10px;
+}
+
+.confirmHead{
+    width: calc(100% - 20px);
+    padding: 0px 10px 10px 10px;
+    font-family: steradian_bold;
+    font-size: 25px;
+    letter-spacing: 1px;
+}
+.confirmInfo{
+    width: 70%;
+    padding: 0px 10px 10px 10px;
+    font-family: productSans;
+    letter-spacing: 1px;
+    line-height: 1.5rem;
+    font-size: 16px;
+    color: var(--sub-text-color);
+}
+
+
+
+.actionBar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 10px 0px 10px;
+    div{
+        z-index: 99;
+    }
+}
+
+.oAddServerContainer{
+    height: auto;
+    min-width: unset;
+    width: 600px;
+}
+
+.oConfimContainer{
+    min-width: unset;
+    max-width: 500px;
+    width: 50vw;
+    height: auto;
+    border-radius: 5px;
+    background: var(--backgroundColor);
+}
+
+.userRowStyle{
+    all: unset !important;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-around !important;
+    width: 100% !important;
+    .customCheckbox{
+        transform: translateX(15px);
+    }
+}

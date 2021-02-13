@@ -1,0 +1,34 @@
+
+
+.bottomContainer{
+    position: fixed;
+    //background: var(--tile-bg);
+    height: 50px;
+    width: inherit;
+    bottom: 20px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+
+    .settings{
+        color: var(--purple);
+    }
+    .info{
+        color: var(--list-bg);
+        background: transparent !important;
+        filter: brightness(2);
+    }
+    .icon{
+        font-size: 2rem;
+        margin-right: 1.5rem;
+        transition: transform 280ms, filter 280ms, color 280ms;
+        cursor: pointer;
+        &:hover{
+            transform: translateY(-2px);
+            filter: brightness(var(--brightness-filter));
+            color: var(--yellow)
+        }
+    }
+}

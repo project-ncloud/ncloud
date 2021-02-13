@@ -1,0 +1,63 @@
+.nasconsole{
+    position: fixed;
+    height: calc(100% - 60px);
+    min-width: calc(400px - 60px);
+    width: calc(60% - 60px);
+    max-width: calc(700px - 60px);
+    background: var(--backgroundColor);
+    right: 0;
+    z-index: 1;
+    padding: 30px;
+    box-shadow: -20px 0px 20px #ffffff05;
+    transition: transform 280ms;
+    .sectionTitle{
+        width: 100%;
+        height: 70px;
+        font-family: steradian_bold;
+        font-size: 2rem;
+        user-select: none;
+    }
+    .clrBtn{
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 30px;
+    }
+    .debugContainer{
+        color: var(--sub-text-color);
+        font-family: 'mono';
+        width: 100%;
+        height: calc(100% - 60px);
+        overflow-x: auto;
+        &::-webkit-scrollbar {
+            width: 10px;
+        }
+        &::-webkit-scrollbar-track{
+            background: transparent;
+        }
+        &::-webkit-scrollbar-thumb{
+            background: var(--subBackgroundColor);
+        }
+        &::-webkit-scrollbar-thumb:hover {
+            background: var(--purple);
+        }
+
+        span{
+            padding-left: 5px;
+            padding-right: 5px;
+            margin-left: 5px;
+            margin-right: 5px;
+            font-size: 14px;
+            color: var(--backgroundColor);
+            float: right;
+        }
+        div{
+            word-wrap: break-word;
+            margin-bottom: 5px;
+        }
+    }
+    
+}
+.Nright{
+    transform: translateX(100%);
+}
