@@ -2,6 +2,7 @@ import axios from "axios";
 import store from "../store";
 import { LOGINFO, LOGERR } from "./log";
 import { AUTH_HEADER } from "../actions/helper";
+import { get_users } from "./user";
 
 const get_pending_users = async () => {
   try {
@@ -22,8 +23,76 @@ const get_pending_users = async () => {
   }
 };
 
-const remove_pending_users = async () => {};
+const removeUser = async (username, type = "pending") => {
+  try {
+    const res = await axios.delete(
+      "/api/user/",
+      AUTH_HEADER({
+        username,
+        type,
+      })
+    );
+    if (res.data.status === true) {
+      LOGINFO(`${username} removed from ${type} list`);
+      return;
+    }
+    throw Error(res.data.msg);
+  } catch (Error) {
+    LOGERR(Error.message, "Pending User");
+  }
+};
 
-const approve_pending_users = async () => {};
+const approveUser = async (username, type = "pending") => {
+  try {
+    const res = await axios.post(
+      "/api/user/",
+      {
+        username,
+        type,
+      },
+      AUTH_HEADER()
+    );
+    if (res.data.status === true) {
+      LOGINFO(`${username} added as user`);
+      return;
+    }
+    throw Error(res.data.msg);
+  } catch (Error) {
+    LOGERR(Error.message, "Pending User");
+  }
+};
 
-export { get_pending_users, remove_pending_users, approve_pending_users };
+const remove_pending_users = async () => {
+  const actionUsers = store
+    .getState()
+    .pendingUserReducer.pending_users.filter((item) => {
+      return item.value === true;
+    });
+
+  for (let i = 0; i < actionUsers.length; i++) {
+    await removeUser(actionUsers[i].username);
+  }
+
+  await get_pending_users();
+  await get_users();
+};
+
+const approve_pending_users = async () => {
+  const actionUsers = store
+    .getState()
+    .pendingUserReducer.pending_users.filter((item) => {
+      return item.value === true;
+    });
+  for (let i = 0; i < actionUsers.length; i++) {
+    await approveUser(actionUsers[i].username);
+  }
+  await get_pending_users();
+  await get_users();
+};
+
+export {
+  get_pending_users,
+  remove_pending_users,
+  approve_pending_users,
+  removeUser,
+};
