@@ -5,6 +5,7 @@ import serverReducer from "./serverReducer";
 import serverAliveReducer from "./serverAliveReducer";
 import pendingUserReducer from "./pendingUserReducer";
 import userReducer from "./userReducer";
+import managerReducer from "./managerReducer";
 import uiReducer from "./uiReducer";
 import consoleReducer from "./consoleReducer";
 import modalReducer from "./modalReducer";
@@ -15,6 +16,7 @@ const masterReducer = combineReducers({
   serversReducer,
   serverAliveReducer,
   pendingUserReducer,
+  managerReducer,
   userReducer,
   uiReducer,
   consoleReducer,

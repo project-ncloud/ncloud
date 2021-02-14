@@ -11,6 +11,8 @@ import AddServer from "./modal/AddServer";
 import CreateHost from "./modal/CreateHost";
 import AddPendingUser from "./modal/AddPendingUser";
 import User from "./modal/User";
+import Manager from "./modal/Manager";
+import CreateManager from "./modal/CreateManager";
 
 function Admin() {
   const loginInfo = useSelector((state) => state.authReducer);
@@ -24,6 +26,7 @@ function Admin() {
       const token = GET_TOKEN();
       if (token !== null) {
         const obj = await IS_TOKEN_VALID(token);
+        dispatch({ type: "REFRESH_AUTH", data: obj.data });
         if (obj.status) {
           const { manager, admin } = obj.data;
           if (admin !== true && manager !== true) {
@@ -93,6 +96,30 @@ function Admin() {
         }}
       >
         <User />
+      </Modal>
+
+      <Modal
+        name="Managers"
+        specClass="modalList addServer"
+        width="800px"
+        has_list={true}
+        showMe={toggleModal.show_managersList}
+        func={() => {
+          dispatch({ type: "TOGGLE_SHOW_MANAGERS", data: false });
+        }}
+      >
+        <Manager />
+      </Modal>
+
+      <Modal
+        name="Create Manager"
+        specClass="modalList addServer"
+        showMe={toggleModal.show_createManager}
+        func={() => {
+          dispatch({ type: "TOGGLE_CREATE_MANAGER", data: false });
+        }}
+      >
+        <CreateManager />
       </Modal>
     </>
   );

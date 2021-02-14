@@ -3,6 +3,8 @@ const INIT = {
   show_createHost: false,
   show_pendingUsersList: false,
   show_usersList: false,
+  show_managersList: false,
+  show_createManager: false,
 };
 
 const modalReducer = (state = INIT, action) => {
@@ -15,6 +17,10 @@ const modalReducer = (state = INIT, action) => {
       return { ...state, show_pendingUsersList: action.data };
     case "TOGGLE_SHOW_USERS":
       return { ...state, show_usersList: action.data };
+    case "TOGGLE_SHOW_MANAGERS":
+      return { ...state, show_managersList: action.data };
+    case "TOGGLE_CREATE_MANAGER":
+      return { ...state, show_createManager: action.data };
     default:
       return state;
   }

@@ -1,5 +1,5 @@
 import axios from "axios";
-import {AUTH_HEADER, SET_TOKEN} from './helper'
+import { AUTH_HEADER, SET_TOKEN } from "./helper";
 
 const INITIAL_VALUE = {
   username: "",
@@ -23,7 +23,7 @@ const LOGIN = async (data) => {
     ) {
       throw Error("dummy");
     } else {
-      SET_TOKEN(dataN.access_token)
+      SET_TOKEN(dataN.access_token);
       return {
         type: "LOGIN",
         data: {
@@ -47,12 +47,12 @@ const LOGIN = async (data) => {
 };
 
 const LOGOUT = async () => {
-  SET_TOKEN('')
+  SET_TOKEN("");
   return {
     type: "LOGIN",
     data: INITIAL_VALUE,
   };
-}
+};
 
 const IS_TOKEN_VALID = async (token) => {
   try {
@@ -74,21 +74,20 @@ const REGISTER = async (data) => {
       name: data.name,
       username: data.username.toLowerCase(),
       password: data.password,
-      KEY: "st67hq"
+      KEY: "st67hq",
     });
     const dataN = res.data;
-    console.log(dataN)
+    console.log(dataN);
 
     return {
-      "error": !dataN.status,
-      "msg": dataN.msg
-    }
-    
+      error: !dataN.status,
+      msg: dataN.msg,
+    };
   } catch {
     return {
-      "error": true,
-      "msg": "Registration failed"
-    }
+      error: true,
+      msg: "Registration failed",
+    };
   }
 };
 
