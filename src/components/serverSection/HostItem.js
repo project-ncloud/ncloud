@@ -30,14 +30,30 @@ function HostItem({ data }) {
         <i className="ri-folder-info-line"></i>
         {data.path}
       </div>
+      <div>
+        <i class="ri-user-2-fill"></i>
+        User admin
+      </div>
       <div className="hostOptions">
-        <i className="ri-settings-3-fill"></i>
-        <i className="ri-user-add-fill"></i>
-        <i className="ri-user-settings-fill"></i>
-        <i
-          className="ri-delete-bin-2-line red"
-          onDoubleClick={() => removeHost()}
-        ></i>
+        <div className="autoHideBtn">
+          <i class="ri-settings-3-fill"></i>
+          <div>Settings</div>
+        </div>
+
+        <div className="autoHideBtn">
+          <i class="ri-user-settings-fill"></i>
+          <div>Manage</div>
+        </div>
+
+        <div className="autoHideBtn" onDoubleClick={() => removeHost()}>
+          <i class="ri-delete-bin-2-line red"></i>
+          <div>Remove</div>
+        </div>
+
+        <div className="autoHideBtn">
+          <i class="ri-folder-4-line cyan"></i>
+          <div>Open</div>
+        </div>
       </div>
       <div style={{ padding: 0, height: 5 + "px" }}></div>
     </div>
