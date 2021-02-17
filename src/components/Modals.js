@@ -7,6 +7,7 @@ import CreateHost from "./modal/CreateHost";
 import CreateManager from "./modal/CreateManager";
 import Manager from "./modal/Manager";
 import Modal from "./modal/Modal";
+import NcloudSettings from "./modal/NcloudSettings";
 import User from "./modal/User";
 import UserAdmin from "./modal/UserAdmin";
 import ValidUsers from "./modal/ValidUsers";
@@ -125,6 +126,17 @@ function Modals() {
         }}
       >
         <UserAdmin />
+      </Modal>
+
+      <Modal
+        name="NCloud Preferences"
+        specClass="modalList addServer"
+        showMe={toggleModal.show_ncloud_preferences}
+        func={() => {
+          dispatch({ type: "TOGGLE_NCLOUD_PREFERENCES", data: false });
+        }}
+      >
+        <NcloudSettings />
       </Modal>
     </>
   );
