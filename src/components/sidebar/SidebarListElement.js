@@ -19,7 +19,6 @@ function SidebarListElement({ data, func }) {
         address: address,
         action: !state,
       });
-      console.log(res);
       if (res.status === 200) {
         setState(!state);
         return;

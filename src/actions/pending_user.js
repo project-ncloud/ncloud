@@ -3,6 +3,7 @@ import store from "../store";
 import { LOGINFO, LOGERR } from "./log";
 import { AUTH_HEADER } from "../actions/helper";
 import { get_users } from "./user";
+import { getServers } from "./server";
 
 const get_pending_users = async () => {
   try {
@@ -88,6 +89,7 @@ const approve_pending_users = async () => {
   }
   await get_pending_users();
   await get_users();
+  await getServers();
 };
 
 export {

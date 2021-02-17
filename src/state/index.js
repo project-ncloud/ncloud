@@ -1,10 +1,14 @@
 import { combineReducers } from "redux";
 import authReducer from "./authActions";
 import serversReducer from "./serversReducer";
+import sharedServersReducer from "./sharedServersReducer";
 import serverReducer from "./serverReducer";
 import serverAliveReducer from "./serverAliveReducer";
 import pendingUserReducer from "./pendingUserReducer";
 import userReducer from "./userReducer";
+import filteredoutUserReducer from "./filteredoutUserReducer";
+import validUserReducer from "./validUserReducer";
+import userAdminReducer from "./userAdminReducer";
 import managerReducer from "./managerReducer";
 import uiReducer from "./uiReducer";
 import consoleReducer from "./consoleReducer";
@@ -14,10 +18,14 @@ const masterReducer = combineReducers({
   authReducer,
   serverReducer,
   serversReducer,
+  sharedServersReducer,
   serverAliveReducer,
   pendingUserReducer,
   managerReducer,
   userReducer,
+  filteredoutUserReducer,
+  validUserReducer,
+  userAdminReducer,
   uiReducer,
   consoleReducer,
   modalReducer,

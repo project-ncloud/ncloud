@@ -1,4 +1,5 @@
 import axios from "axios";
+import store from "../store";
 import { AUTH_HEADER, SET_TOKEN } from "./helper";
 
 const INITIAL_VALUE = {
@@ -47,6 +48,7 @@ const LOGIN = async (data) => {
 };
 
 const LOGOUT = async () => {
+  store.dispatch({ type: "RESET_SERVERS" });
   SET_TOKEN("");
   return {
     type: "LOGIN",

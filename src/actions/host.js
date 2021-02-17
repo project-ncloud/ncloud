@@ -1,4 +1,5 @@
 import axios from "axios";
+import store from "../store";
 import { AUTH_HEADER } from "./helper";
 
 const create_host = async (block) => {
@@ -56,4 +57,18 @@ const remove_host = async (block) => {
   }
 };
 
-export { create_host, remove_host };
+const get_name = (username) => {
+  const users = store.getState().userReducer.users;
+
+  const match = users.filter((item) => {
+    return item.username === username;
+  });
+
+  if (match.length < 1) {
+    return "N/A";
+  } else {
+    return match[0].name;
+  }
+};
+
+export { create_host, remove_host, get_name };

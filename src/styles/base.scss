@@ -51,6 +51,18 @@
   }
 }
 
+@keyframes startUp {
+  0% {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0px);
+    opacity: 100;
+  }
+}
+
 :root {
   --backgroundColor: #121922;
   --subBackgroundColor: #171f2a;

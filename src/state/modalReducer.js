@@ -5,6 +5,10 @@ const INIT = {
   show_usersList: false,
   show_managersList: false,
   show_createManager: false,
+
+  show_validUsersList: false,
+  show_addValidUser: false,
+  show_addUserAdmin: false,
 };
 
 const modalReducer = (state = INIT, action) => {
@@ -21,6 +25,13 @@ const modalReducer = (state = INIT, action) => {
       return { ...state, show_managersList: action.data };
     case "TOGGLE_CREATE_MANAGER":
       return { ...state, show_createManager: action.data };
+
+    case "TOGGLE_SHOW_VALID_USERS":
+      return { ...state, show_validUsersList: action.data };
+    case "TOGGLE_ADD_VALID_USERS":
+      return { ...state, show_addValidUser: action.data };
+    case "TOGGLE_ADD_USER_ADMIN":
+      return { ...state, show_addUserAdmin: action.data };
     default:
       return state;
   }

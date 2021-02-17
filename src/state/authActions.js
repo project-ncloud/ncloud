@@ -10,23 +10,14 @@ const authReducer = (state = INITIAL_VALUE, action) => {
     case "LOGIN":
       return action.data;
     case "REFRESH_AUTH":
+      if (action.data === undefined || action.data === null) {
+        return INITIAL_VALUE;
+      }
       return {
-        name:
-          action.data.name === undefined || action.data.name === null
-            ? ""
-            : action.data.name,
-        username:
-          action.data.username === undefined || action.data.username === null
-            ? ""
-            : action.data.username,
-        is_admin:
-          action.data.admin === undefined || action.data.admin === null
-            ? false
-            : action.data.admin,
-        is_manager:
-          action.data.manager === undefined || action.data.manager === null
-            ? false
-            : action.data.manager,
+        name: action.data.name,
+        username: action.data.username,
+        is_admin: action.data.admin,
+        is_manager: action.data.manager,
       };
     default:
       return state;

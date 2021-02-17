@@ -1,12 +1,12 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { remove_host } from "../../actions/host";
+import { useSelector, useDispatch } from "react-redux";
+import { remove_host, get_name } from "../../actions/host";
 import { reFetchServer, getServers } from "../../actions/server";
 import "../../styles/container/hostItem.scss";
 
 function HostItem({ data }) {
   const serverData = useSelector((state) => state.serverReducer);
-
+  const dispatch = useDispatch();
   const removeHost = async () => {
     const resObj = await remove_host({
       name: data.name,
@@ -19,6 +19,27 @@ function HostItem({ data }) {
       await reFetchServer(serverData);
     }
   };
+
+  const fetchValidUsers = async () => {
+    const x = data.validUsers.map((item) => {
+      return {
+        name: get_name(item),
+        username: item,
+        value: false,
+      };
+    });
+    dispatch({
+      type: "STORE_VALID_USER",
+      data: {
+        hostName: data.name,
+        hostPath: data.path,
+        validUsers: x,
+      },
+    });
+    dispatch({ type: "STORE_USER_ADMIN", data: data.admin });
+    dispatch({ type: "TOGGLE_SHOW_VALID_USERS", data: true });
+  };
+
   return (
     <div className="info hostinfo">
       <div style={{ padding: 0, height: 5 + "px" }}></div>
@@ -31,27 +52,27 @@ function HostItem({ data }) {
         {data.path}
       </div>
       <div>
-        <i class="ri-user-2-fill"></i>
-        User admin
+        <i className="ri-user-2-fill"></i>
+        {data.admin.name === undefined ? "None" : data.admin.name}
       </div>
       <div className="hostOptions">
         <div className="autoHideBtn">
-          <i class="ri-settings-3-fill"></i>
+          <i className="ri-settings-3-fill"></i>
           <div>Settings</div>
         </div>
 
-        <div className="autoHideBtn">
-          <i class="ri-user-settings-fill"></i>
+        <div className="autoHideBtn" onClick={() => fetchValidUsers()}>
+          <i className="ri-user-settings-fill"></i>
           <div>Manage</div>
         </div>
 
         <div className="autoHideBtn" onDoubleClick={() => removeHost()}>
-          <i class="ri-delete-bin-2-line red"></i>
+          <i className="ri-delete-bin-2-line red"></i>
           <div>Remove</div>
         </div>
 
         <div className="autoHideBtn">
-          <i class="ri-folder-4-line cyan"></i>
+          <i className="ri-folder-4-line cyan"></i>
           <div>Open</div>
         </div>
       </div>

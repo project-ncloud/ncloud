@@ -2,11 +2,14 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import AddPendingUser from "./modal/AddPendingUser";
 import AddServer from "./modal/AddServer";
+import AddValidUsers from "./modal/AddValidUsers";
 import CreateHost from "./modal/CreateHost";
 import CreateManager from "./modal/CreateManager";
 import Manager from "./modal/Manager";
 import Modal from "./modal/Modal";
 import User from "./modal/User";
+import UserAdmin from "./modal/UserAdmin";
+import ValidUsers from "./modal/ValidUsers";
 
 function Modals() {
   const toggleModal = useSelector((state) => state.modalReducer);
@@ -83,6 +86,45 @@ function Modals() {
         }}
       >
         <CreateManager />
+      </Modal>
+
+      <Modal
+        name="Valid users"
+        specClass="modalList addServer"
+        showMe={toggleModal.show_validUsersList}
+        width="800px"
+        has_list={true}
+        func={() => {
+          dispatch({ type: "TOGGLE_SHOW_VALID_USERS", data: false });
+        }}
+      >
+        <ValidUsers />
+      </Modal>
+
+      <Modal
+        name="Add Valid Users"
+        specClass="modalList addServer"
+        showMe={toggleModal.show_addValidUser}
+        width="800px"
+        has_list={true}
+        func={() => {
+          dispatch({ type: "TOGGLE_ADD_VALID_USERS", data: false });
+        }}
+      >
+        <AddValidUsers />
+      </Modal>
+
+      <Modal
+        name="Change User Admin"
+        specClass="modalList addServer"
+        showMe={toggleModal.show_addUserAdmin}
+        width="800px"
+        has_list={true}
+        func={() => {
+          dispatch({ type: "TOGGLE_ADD_USER_ADMIN", data: false });
+        }}
+      >
+        <UserAdmin />
       </Modal>
     </>
   );
