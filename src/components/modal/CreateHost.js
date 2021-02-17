@@ -84,7 +84,7 @@ function CreateHost({ func }) {
         <input
           type="checkbox"
           onChange={(e) => {
-            setIState({ ...iState, writable: e.target.value });
+            setIState({ ...iState, writable: Boolean(e.target.value) });
           }}
           name="writeAccessHost"
           id="writeAccessHost"
@@ -97,7 +97,7 @@ function CreateHost({ func }) {
         <input
           type="checkbox"
           onChange={(e) => {
-            setIState({ ...iState, public: e.target.value });
+            setIState({ ...iState, public: Boolean(e.target.value) });
           }}
           name="publicAccessHost"
           id="publicAccessHost"

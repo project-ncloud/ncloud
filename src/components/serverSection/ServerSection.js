@@ -1,17 +1,22 @@
 import { React, useState } from "react";
 import "../../styles/container/serverSection.scss";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import HostContainer from "./HostContainer";
 import { removeServer } from "../../actions/server";
 
 function ServerSection({ toggle }) {
   const serverData = useSelector((state) => state.serverReducer);
+  const dispatch = useDispatch();
   const [busy, setBusy] = useState(false);
 
   const removeServerReact = async (name, address) => {
     setBusy(true);
     await removeServer(name, address);
     setBusy(false);
+  };
+
+  const servrPref = () => {
+    dispatch({ type: "TOGGLE_SERVER_PREFERENCES", data: true });
   };
 
   return (
@@ -28,14 +33,20 @@ function ServerSection({ toggle }) {
         </div>
         <div>
           {!busy ? (
-            <i
-              className="ri-delete-bin-2-line btn"
-              onDoubleClick={() =>
-                removeServerReact(serverData.name, serverData.address)
-              }
-            >
-              <p>Remove Server</p>
-            </i>
+            <>
+              <i
+                className="ri-settings-3-fill btn"
+                onClick={() => servrPref()}
+              ></i>
+              <i
+                className="ri-delete-bin-2-line btn"
+                onDoubleClick={() =>
+                  removeServerReact(serverData.name, serverData.address)
+                }
+              >
+                <p>Remove Server</p>
+              </i>
+            </>
           ) : (
             <i
               className="ri-delete-bin-2-line btn"

@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { IS_TOKEN_VALID } from "../actions/auth";
 import { GET_TOKEN } from "../actions/helper";
-import FileManager from "./FileManager";
 import Header from "./user/Header";
 import "../styles/userBase.scss";
 import DriveContainer from "./user/DriveContainer";

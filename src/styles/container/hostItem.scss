@@ -107,11 +107,11 @@
         opacity: 0;
         word-break: keep-all;
         word-wrap: none;
-        transition: max-width 400ms ease, opacity 280ms ease,
-          padding-right 280ms ease, padding-left 280ms ease;
+        transition: max-width 400ms 100ms ease, opacity 400ms 100ms ease,
+          padding-right 400ms 100ms ease, padding-left 400ms 100ms ease;
       }
 
-      transition: width 280ms ease;
+      transition: width 400ms 100ms ease;
 
       &:hover {
         div {

@@ -78,7 +78,7 @@ function AddServer({ func }) {
           type="checkbox"
           value={iState.auto_start}
           onChange={(e) => {
-            setIState({ ...iState, auto_start: e.target.value });
+            setIState({ ...iState, auto_start: Boolean(e.target.value) });
           }}
           name="addAutoStart"
           id="addAutoStart"

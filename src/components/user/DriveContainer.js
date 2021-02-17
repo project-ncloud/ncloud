@@ -1,10 +1,7 @@
-import { React, useState } from "react";
-import { useSelector } from "react-redux";
+import { React } from "react";
 import DriveCard from "./DriveCard";
 
 function DriveContainer({ data }) {
-  const servers = useSelector((state) => state.serversReducer);
-  const [state, setState] = useState(false);
   return (
     <div className="driveContainer">
       {data.map((item) => {

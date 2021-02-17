@@ -4,6 +4,7 @@ import serversReducer from "./serversReducer";
 import sharedServersReducer from "./sharedServersReducer";
 import serverReducer from "./serverReducer";
 import serverAliveReducer from "./serverAliveReducer";
+import hostReducer from "./hostReducer";
 import pendingUserReducer from "./pendingUserReducer";
 import userReducer from "./userReducer";
 import filteredoutUserReducer from "./filteredoutUserReducer";
@@ -20,6 +21,7 @@ const masterReducer = combineReducers({
   serversReducer,
   sharedServersReducer,
   serverAliveReducer,
+  hostReducer,
   pendingUserReducer,
   managerReducer,
   userReducer,

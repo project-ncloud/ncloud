@@ -6,6 +6,7 @@ import {
 } from "../../actions/pending_user";
 import UserRow from "./UserRow";
 import "../../styles/modal/userList.scss";
+import ModalEmpty from "./subcomponents/ModalEmpty";
 
 function AddPendingUser({ searchstr }) {
   const users = useSelector((state) => state.pendingUserReducer.pending_users);
@@ -31,13 +32,17 @@ function AddPendingUser({ searchstr }) {
 
   return (
     <>
-      <div className="list listHead" style={{ height: "max-content" }}>
-        <div className="row pendingUserRow">
-          <div className="col">Name</div>
-          <div className="col">Username</div>
-          <div className="col colAction">Action</div>
+      {users.length > 0 ? (
+        <div className="list listHead" style={{ height: "max-content" }}>
+          <div className="row pendingUserRow">
+            <div className="col">Name</div>
+            <div className="col">Username</div>
+            <div className="col colAction">Action</div>
+          </div>
         </div>
-      </div>
+      ) : (
+        <ModalEmpty />
+      )}
 
       <div className="list userListM" style={{ height: "350px" }}>
         {users.map((item) => {

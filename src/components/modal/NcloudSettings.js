@@ -70,6 +70,7 @@ function NcloudSettings({ func }) {
       await fetchConfig();
     }
     dummy();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [modalToggle]);
 
   return (
@@ -159,6 +160,8 @@ function NcloudSettings({ func }) {
             const ERR = await applyConfig();
             if (!ERR.is_error) {
               func();
+            } else {
+              setErr(ERR.msg);
             }
           }}
         />

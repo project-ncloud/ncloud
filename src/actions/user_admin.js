@@ -1,7 +1,6 @@
 import store from "../store";
 import axios from "axios";
 import { AUTH_HEADER } from "./helper";
-import { LOGERR, LOGINFO } from "./log";
 const setUserAdmin = async () => {
   const { hostName, hostPath, validUsers } = store.getState().validUserReducer;
   const { name, address } = store.getState().serverReducer;

@@ -79,9 +79,11 @@ const remove_manager = async (username) => {
 };
 
 const remove_managers = async () => {
-  const actionUsers = store.getState().managerReducer.users.filter((item) => {
-    return item.value === true;
-  });
+  const actionUsers = store
+    .getState()
+    .managerReducer.managers.filter((item) => {
+      return item.value === true;
+    });
 
   for (let i = 0; i < actionUsers.length; i++) {
     await remove_manager(actionUsers[i].username, "normal");

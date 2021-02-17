@@ -5,9 +5,11 @@ import AddServer from "./modal/AddServer";
 import AddValidUsers from "./modal/AddValidUsers";
 import CreateHost from "./modal/CreateHost";
 import CreateManager from "./modal/CreateManager";
+import HostPreferences from "./modal/HostPreferences";
 import Manager from "./modal/Manager";
 import Modal from "./modal/Modal";
 import NcloudSettings from "./modal/NcloudSettings";
+import ServerPreferences from "./modal/ServerPreferences";
 import User from "./modal/User";
 import UserAdmin from "./modal/UserAdmin";
 import ValidUsers from "./modal/ValidUsers";
@@ -137,6 +139,28 @@ function Modals() {
         }}
       >
         <NcloudSettings />
+      </Modal>
+
+      <Modal
+        name="Server Preferences"
+        specClass="modalList addServer"
+        showMe={toggleModal.show_server_preferences}
+        func={() => {
+          dispatch({ type: "TOGGLE_SERVER_PREFERENCES", data: false });
+        }}
+      >
+        <ServerPreferences />
+      </Modal>
+
+      <Modal
+        name="Host Preferences"
+        specClass="modalList addServer"
+        showMe={toggleModal.show_host_preferences}
+        func={() => {
+          dispatch({ type: "TOGGLE_HOST_PREFERENCES", data: false });
+        }}
+      >
+        <HostPreferences />
       </Modal>
     </>
   );

@@ -1,6 +1,5 @@
 import { React, useState } from "react";
 import { create_manager, get_managers } from "../../actions/manager";
-import { getServers } from "../../actions/server";
 import "../../styles/modal/list.scss";
 import "../../styles/modal/addServer.scss";
 import ModalText from "./subcomponents/ModalText";

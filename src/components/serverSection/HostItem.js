@@ -40,6 +40,14 @@ function HostItem({ data }) {
     dispatch({ type: "TOGGLE_SHOW_VALID_USERS", data: true });
   };
 
+  const host_pref = () => {
+    dispatch({
+      type: "STORE_HOST",
+      data: data,
+    });
+    dispatch({ type: "TOGGLE_HOST_PREFERENCES", data: true });
+  };
+
   return (
     <div className="info hostinfo">
       <div style={{ padding: 0, height: 5 + "px" }}></div>
@@ -53,10 +61,12 @@ function HostItem({ data }) {
       </div>
       <div>
         <i className="ri-user-2-fill"></i>
-        {data.admin.name === undefined ? "None" : data.admin.name}
+        {data.admin.name === undefined || data.admin.name === ""
+          ? "None"
+          : data.admin.name}
       </div>
       <div className="hostOptions">
-        <div className="autoHideBtn">
+        <div className="autoHideBtn" onClick={() => host_pref()}>
           <i className="ri-settings-3-fill"></i>
           <div>Settings</div>
         </div>

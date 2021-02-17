@@ -5,6 +5,7 @@ import "../../styles/modal/userList.scss";
 import ModalButtom from "./subcomponents/ModalButtom";
 import ModalButton from "./subcomponents/ModalButton";
 import { filterOutUsers, remove_validUsers } from "../../actions/valid_user";
+import ModalEmpty from "./subcomponents/ModalEmpty";
 
 function ValidUsers({ searchstr, func }) {
   const validUsers = useSelector((state) => state.validUserReducer.validUsers);
@@ -33,13 +34,17 @@ function ValidUsers({ searchstr, func }) {
 
   return (
     <>
-      <div className="list listHead" style={{ height: "max-content" }}>
-        <div className="row pendingUserRow">
-          <div className="col">Name</div>
-          <div className="col">Username</div>
-          <div className="col colAction">Action</div>
+      {validUsers.length > 0 ? (
+        <div className="list listHead" style={{ height: "max-content" }}>
+          <div className="row pendingUserRow">
+            <div className="col">Name</div>
+            <div className="col">Username</div>
+            <div className="col colAction">Action</div>
+          </div>
         </div>
-      </div>
+      ) : (
+        <ModalEmpty />
+      )}
 
       <div className="list userListM" style={{ height: "350px" }}>
         {validUsers.map((item) => {

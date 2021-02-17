@@ -11,14 +11,19 @@ const INIT = {
   show_addUserAdmin: false,
 
   show_ncloud_preferences: false,
+  show_server_preferences: false,
+  show_host_preferences: false,
 };
 
 const modalReducer = (state = INIT, action) => {
   switch (action.type) {
+    //Main
     case "TOGGLE_ADD_SERVER":
       return { ...state, show_addServer: action.data };
     case "TOGGLE_CREATE_HOST":
       return { ...state, show_createHost: action.data };
+
+    //User system and role
     case "TOGGLE_SHOW_PENDING_USERS":
       return { ...state, show_pendingUsersList: action.data };
     case "TOGGLE_SHOW_USERS":
@@ -28,6 +33,7 @@ const modalReducer = (state = INIT, action) => {
     case "TOGGLE_CREATE_MANAGER":
       return { ...state, show_createManager: action.data };
 
+    //Valid user adn user admin
     case "TOGGLE_SHOW_VALID_USERS":
       return { ...state, show_validUsersList: action.data };
     case "TOGGLE_ADD_VALID_USERS":
@@ -35,8 +41,13 @@ const modalReducer = (state = INIT, action) => {
     case "TOGGLE_ADD_USER_ADMIN":
       return { ...state, show_addUserAdmin: action.data };
 
+    //Preferences
     case "TOGGLE_NCLOUD_PREFERENCES":
       return { ...state, show_ncloud_preferences: action.data };
+    case "TOGGLE_SERVER_PREFERENCES":
+      return { ...state, show_server_preferences: action.data };
+    case "TOGGLE_HOST_PREFERENCES":
+      return { ...state, show_host_preferences: action.data };
     default:
       return state;
   }

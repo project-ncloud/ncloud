@@ -2,7 +2,7 @@ import axios from "axios";
 import store from "../store";
 import { LOGINFO, LOGERR } from "./log";
 import { AUTH_HEADER } from "../actions/helper";
-import { removeUser, get_pending_users } from "./pending_user";
+import { get_pending_users } from "./pending_user";
 import { get_users } from "./user";
 import { getServers, reFetchServer } from "./server";
 
