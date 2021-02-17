@@ -1,0 +1,64 @@
+.checkboxRow {
+  grid-template-columns: 1fr;
+}
+
+label {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer !important;
+
+  div {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    flex-direction: row;
+
+    i {
+      all: unset !important;
+      font-size: 20px !important;
+    }
+  }
+}
+
+input[type="checkbox"] {
+  position: relative;
+  width: 40px !important;
+  height: 17px !important;
+  appearance: none;
+  background: var(--list-bg) !important;
+  outline: none;
+  border-radius: 20px;
+  transition: background 280ms;
+  margin-right: 20px;
+  cursor: pointer !important;
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #ffffff2d;
+    border-radius: 100%;
+
+    left: 10%;
+    top: 21%;
+    cursor: pointer !important;
+
+    transition: transform 280ms, background 280ms;
+  }
+}
+
+input:checked[type="checkbox"] {
+  background: var(--purple) !important;
+  cursor: pointer !important;
+
+  &::before {
+    background: var(--semi-transparent);
+    transform: translateX(200%);
+    transition: transform 280ms, background 280ms;
+    cursor: pointer !important;
+  }
+}
