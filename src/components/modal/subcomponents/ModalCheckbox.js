@@ -15,7 +15,7 @@ function ModalCheckbox({ name, data, icon, func, key }) {
             id={key}
             value={data}
             checked={Boolean(data)}
-            onClick={func}
+            onChange={func}
           ></input>
         </label>
       </div>

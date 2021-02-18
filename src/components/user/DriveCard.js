@@ -1,10 +1,26 @@
 import React from "react";
 import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
-
-function DriveCard({ name, free, driveInfo, admin, running, onClick }) {
+import useClipboard from "react-use-clipboard";
+function DriveCard({
+  name,
+  free,
+  driveInfo,
+  admin,
+  running,
+  onClick,
+  address,
+  path,
+}) {
   function handleClick(e, data) {
-    console.log(data.foo);
+    console.log();
   }
+
+  const [isCopied, setCopied] = useClipboard(
+    `\\\\${address.split(":")[0]}\\${name}`,
+    {
+      successDuration: 1000,
+    }
+  );
 
   const icoStyle = { marginRight: "15px", fontSize: "20px" };
   return (
@@ -48,7 +64,7 @@ function DriveCard({ name, free, driveInfo, admin, running, onClick }) {
               <i className="ri-folder-line purple" style={icoStyle}></i>
               Open
             </MenuItem>
-            <MenuItem onClick={handleClick}>
+            <MenuItem onClick={setCopied}>
               <i className="ri-clipboard-line yellow" style={icoStyle}></i>
               Copy SMB URL
             </MenuItem>

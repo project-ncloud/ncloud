@@ -11,6 +11,8 @@ function DriveContainer({ data }) {
             name={item.host_name}
             admin={item.is_you_user_admin}
             running={item.is_running}
+            address={item.address}
+            path={item.path}
             free={60}
             driveInfo="1GB Free out of 32GB"
           />

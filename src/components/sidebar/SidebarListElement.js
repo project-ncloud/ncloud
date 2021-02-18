@@ -8,10 +8,11 @@ function SidebarListElement({ data, func }) {
   const [state, setState] = useState(false);
   useEffect(() => {
     async function xx() {
-      setState(await getServerStatus(data.address));
+      const serverStatus = await getServerStatus(data.address);
+      setState(serverStatus);
     }
     xx();
-  }, [data.address]);
+  }, []);
 
   const toggleServer = async (address) => {
     try {
