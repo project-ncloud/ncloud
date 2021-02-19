@@ -15,6 +15,7 @@ function DriveCard({
     console.log();
   }
 
+  // eslint-disable-next-line no-unused-vars
   const [isCopied, setCopied] = useClipboard(
     `\\\\${address.split(":")[0]}\\${name}`,
     {

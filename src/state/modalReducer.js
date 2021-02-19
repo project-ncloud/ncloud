@@ -13,6 +13,8 @@ const INIT = {
   show_ncloud_preferences: false,
   show_server_preferences: false,
   show_host_preferences: false,
+
+  show_about: false,
 };
 
 const modalReducer = (state = INIT, action) => {
@@ -48,6 +50,9 @@ const modalReducer = (state = INIT, action) => {
       return { ...state, show_server_preferences: action.data };
     case "TOGGLE_HOST_PREFERENCES":
       return { ...state, show_host_preferences: action.data };
+    // About
+    case "TOGGLE_SHOW_ABOUT":
+      return { ...state, show_about: action.data };
     default:
       return state;
   }

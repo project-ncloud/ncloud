@@ -6,6 +6,7 @@ import AddValidUsers from "./modal/AddValidUsers";
 import CreateHost from "./modal/CreateHost";
 import CreateManager from "./modal/CreateManager";
 import HostPreferences from "./modal/HostPreferences";
+import InfoModal from "./modal/InfoModal";
 import Manager from "./modal/Manager";
 import Modal from "./modal/Modal";
 import NcloudSettings from "./modal/NcloudSettings";
@@ -162,6 +163,15 @@ function Modals() {
       >
         <HostPreferences />
       </Modal>
+
+      <InfoModal
+        name="Host Preferences"
+        specClass="modalList addServer"
+        showMe={toggleModal.show_about}
+        func={() => {
+          dispatch({ type: "TOGGLE_SHOW_ABOUT", data: false });
+        }}
+      />
     </>
   );
 }

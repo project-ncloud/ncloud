@@ -12,6 +12,7 @@ function SidebarListElement({ data, func }) {
       setState(serverStatus);
     }
     xx();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const toggleServer = async (address) => {

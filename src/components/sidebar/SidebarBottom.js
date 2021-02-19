@@ -23,7 +23,12 @@ function SidebarBottom() {
           dispatch({ type: "TOGGLE_NCLOUD_PREFERENCES", data: true });
         }}
       ></i>
-      <i className="ri-information-fill info icon"></i>
+      <i
+        className="ri-information-fill info icon"
+        onClick={() => {
+          dispatch({ type: "TOGGLE_SHOW_ABOUT", data: true });
+        }}
+      ></i>
       <i
         className="ri-code-box-fill settings icon"
         onClick={() => toggleConsole()}
