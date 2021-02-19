@@ -83,7 +83,7 @@ function NcloudSettings({ func }) {
         </div>
 
         <ModalCheckbox
-          key="autoStartSrvr"
+          cKey="autoStartSrvrNP"
           name="Auto start server"
           data={iState.autoStartSrvr}
           icon={<i className="ri-server-line"></i>}
@@ -104,7 +104,7 @@ function NcloudSettings({ func }) {
         </div>
 
         <ModalCheckbox
-          key="allowRegistration"
+          cKey="allowRegistrationNP"
           name="Allow registration"
           data={iState.allowRegistration}
           icon={<i className="ri-user-settings-line"></i>}
@@ -117,7 +117,7 @@ function NcloudSettings({ func }) {
         />
 
         <ModalCheckbox
-          key="pendingNewUser"
+          cKey="pendingNewUserNP"
           name="Put new users into pending Users"
           data={iState.pendingNewUser}
           icon={<i className="ri-user-shared-line"></i>}
@@ -129,7 +129,7 @@ function NcloudSettings({ func }) {
           }}
         />
         <ModalCheckbox
-          key="addall_inNewHosts"
+          cKey="addall_inNewHostsNP"
           name="Automatically add users after approval"
           data={iState.addall_inNewHosts}
           icon={<i className="ri-user-add-line"></i>}

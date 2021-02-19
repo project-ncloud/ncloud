@@ -95,7 +95,7 @@ function ServerPreferences({ func }) {
         </div>
 
         <ModalCheckbox
-          key="autoStartSrvr"
+          cKey="autoStartSrvrSP"
           name="Auto start server"
           data={iState.auto_start}
           icon={<i className="ri-server-line"></i>}

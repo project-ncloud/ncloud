@@ -108,7 +108,7 @@ function HostPreferences({ func }) {
         </div>
 
         <ModalCheckbox
-          key="public"
+          cKey="public"
           name="Public Access"
           data={iState.public}
           icon={<i className="ri-server-line"></i>}
@@ -121,7 +121,7 @@ function HostPreferences({ func }) {
         />
 
         <ModalCheckbox
-          key="write"
+          cKey="write"
           name="Write Access"
           data={iState.writable}
           icon={<i className="ri-server-line"></i>}

@@ -1,6 +1,5 @@
 import React from "react";
 import logo from "../../styles/res/img/fullLogo.png";
-import miniLogo from "../../styles/res/img/logo.svg";
 import redux from "../../styles/res/img/redux.png";
 import mongodb from "../../styles/res/img/mongodb.png";
 import flask from "../../styles/res/img/flask.png";

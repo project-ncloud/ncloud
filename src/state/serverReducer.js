@@ -1,11 +1,15 @@
+const INIT = {
+  name: "",
+  address: "",
+  autoStart: false,
+};
+const serverReducer = (state = INIT, action) => {
+  switch (action.type) {
+    case "STORE_SERVER":
+      return action.data;
+    default:
+      return INIT;
+  }
+};
 
-const serverReducer = (state = {}, action) => {
-    switch(action.type){
-        case 'STORE_SERVER':
-            return action.data
-        default:
-            return state
-    }
-}
- 
-export default serverReducer
+export default serverReducer;
