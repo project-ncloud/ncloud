@@ -10,7 +10,7 @@ const hostReducer = (state = INIT, action) => {
     case "STORE_HOST":
       return action.data;
     default:
-      return INIT;
+      return state;
   }
 };
 

@@ -8,7 +8,7 @@ const serverReducer = (state = INIT, action) => {
     case "STORE_SERVER":
       return action.data;
     default:
-      return INIT;
+      return state;
   }
 };
 
