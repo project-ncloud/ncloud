@@ -17,7 +17,7 @@
   justify-content: flex-start;
   padding: 20px;
 
-  font-family: "steradian_Bold";
+  font-family: 'steradian_Bold';
   letter-spacing: 1px;
   font-size: 2rem;
   user-select: none;
@@ -42,7 +42,7 @@
     background: #000000dc;
     color: white;
     font-size: 1.2rem;
-    font-family: "productSans";
+    font-family: 'productSans';
     opacity: 0;
     width: 120px;
     height: 120px;
@@ -68,7 +68,7 @@
 
   p {
     font-size: 1rem;
-    font-family: "productSans";
+    font-family: 'productSans';
     letter-spacing: 2px;
     color: #8fa6c0b6;
     line-height: 1.7rem;
@@ -101,7 +101,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  i {
+  i,
+  label {
     color: var(--sub-text-color);
     width: calc(80px - 2rem);
     height: calc(80px - 2rem);
@@ -151,7 +152,7 @@
     padding: 0rem 3rem 0rem 3rem;
 
     p {
-      font-family: "productSans_Bold";
+      font-family: 'productSans_Bold';
       letter-spacing: 1px;
       color: var(--sub-text-color);
     }
@@ -207,7 +208,7 @@
       text-overflow: ellipsis;
     }
     .fSize {
-      font-family: "productSans_Bold";
+      font-family: 'productSans_Bold';
       letter-spacing: 3px;
       font-size: 0.9rem;
       margin-top: 0.5rem;
