@@ -1,5 +1,8 @@
+import axios from "axios";
 import React from "react";
 import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
+import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import useClipboard from "react-use-clipboard";
 function DriveCard({
   name,
@@ -11,9 +14,27 @@ function DriveCard({
   address,
   path,
 }) {
+  const history = useHistory();
+  const dispatch = useDispatch();
   function handleClick(e, data) {
     console.log();
   }
+
+  const openDrive = async () => {
+    try {
+      const res = await axios.get(`http://${address}/dir/`, {
+        params: { path },
+      });
+      if (res.status === 200) {
+        dispatch({ type: "STORE_EXPLORER_DATA", data: res.data });
+        dispatch({
+          type: "STORE_EXPLORER_CONSTANT",
+          data: { path, address, name },
+        });
+        history.push("/explorer");
+      }
+    } catch (Error) {}
+  };
 
   // eslint-disable-next-line no-unused-vars
   const [isCopied, setCopied] = useClipboard(
@@ -61,7 +82,7 @@ function DriveCard({
       <ContextMenu id={name + "contextMenu"}>
         {running ? (
           <>
-            <MenuItem onClick={handleClick}>
+            <MenuItem onClick={openDrive}>
               <i className="ri-folder-line purple" style={icoStyle}></i>
               Open
             </MenuItem>

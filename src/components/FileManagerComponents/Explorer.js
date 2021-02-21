@@ -1,52 +1,58 @@
-import {React, useState, useEffect} from 'react'
-import axios from 'axios'
-import PathBar from './PathBar'
-import ItemContainer from './ItemContainer'
+import { React, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import axios from "axios";
+import PathBar from "./PathBar";
+import ItemContainer from "./ItemContainer";
 
 function Explorer() {
-  const [state, setState] = useState([])
-  const [path, setPath] = useState('')
+  const path = useSelector((state) => state.explorerReducer.path);
+  const explorerConst = useSelector((state) => state.explorerControlReducer);
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
-    axios
-      .get('http://127.0.0.1:6900/dir/', {
-        params: {path: '/home/dni9/Desktop/temp/'},
-      })
-      .then(({data}) => {
-        setState(data.data)
-        setState(data.data)
-      })
-      .catch(err => console.error(err))
-  }, [])
+    if (explorerConst.path === "") {
+      history.push("/user");
+    }
+  });
 
-  //   useEffect(() => {
-  //     axios
-  //       .post('/dir/', {path: path})
-  //       .then(resolve => {
-  //         setState(resolve.data.data)
-  //       })
-  //       .catch(err => {
-  //         console.error(err)
-  //       })
-  //   }, [path])
+  useEffect(() => {
+    const openDrive = async () => {
+      try {
+        const res = await axios.get(`http://${explorerConst.address}/dir/`, {
+          params: { path },
+        });
+        if (res.status === 200) {
+          dispatch({ type: "STORE_EXPLORER_DATA", data: res.data });
+        }
+      } catch (Error) {}
+    };
+    openDrive();
+  }, [dispatch, path]);
 
-  const downDir = name => {
-    setPath(path + '\\' + name)
-  }
+  const downDir = (name) => {
+    dispatch({ type: "STORE_EXPLORER_PATH", data: path + "/" + name });
+  };
 
   const upDir = () => {
-    setPath(path.substring(0, path.lastIndexOf('\\')))
-  }
+    if (path !== explorerConst.path) {
+      dispatch({
+        type: "STORE_EXPLORER_PATH",
+        data: path.substring(0, path.lastIndexOf("/")),
+      });
+    }
+  };
 
   return (
-    <div className='fExplorer'>
-      <div className='fHeader fPadding'>
+    <div className="fExplorer">
+      <div className="fHeader fPadding">
         <h1>Explorer</h1>
       </div>
       <PathBar path={path} />
-      <ItemContainer itemData={state} upFunc={upDir} downFunc={downDir} />
+      <ItemContainer path={path} upFunc={upDir} downFunc={downDir} />
     </div>
-  )
+  );
 }
 
-export default Explorer
+export default Explorer;

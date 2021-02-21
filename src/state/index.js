@@ -14,6 +14,8 @@ import managerReducer from "./managerReducer";
 import uiReducer from "./uiReducer";
 import consoleReducer from "./consoleReducer";
 import modalReducer from "./modalReducer";
+import explorerReducer from "./explorerReducer";
+import explorerControlReducer from "./explorerControlReducer";
 
 const masterReducer = combineReducers({
   authReducer,
@@ -31,6 +33,8 @@ const masterReducer = combineReducers({
   uiReducer,
   consoleReducer,
   modalReducer,
+  explorerReducer,
+  explorerControlReducer,
 });
 
 export default masterReducer;
