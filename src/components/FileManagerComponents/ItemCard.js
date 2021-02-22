@@ -1,5 +1,6 @@
 import React from "react";
 import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
+import { useSelector } from "react-redux";
 import { getIco } from "../../actions/explorer";
 
 const icoStyle = { marginRight: "15px", fontSize: "20px" };
@@ -14,7 +15,11 @@ const ItemCard = ({
   up = false,
   upFunc,
   downFunc,
+  back,
 }) => {
+  const writable = useSelector(
+    (state) => state.explorerControlReducer.writable
+  );
   const dummyFunc = () => {
     return;
   };
@@ -37,17 +42,10 @@ const ItemCard = ({
         <div
           className="card"
           onClick={() => {
-            // axios
-            //   .get('http://127.0.0.1:6900/testRoute/', {
-            //     params: {path, file_name},
-            //   })
-            //   .then(res => console.log(res))
-            //   .catch(err => console.error(err))
-
             up ? upFunc() : dummyFunc();
           }}
           onDoubleClick={() => {
-            isDir ? downFunc(name) : dummyFunc();
+            isDir ? downFunc(name) : up ? back() : dummyFunc();
           }}
         >
           {getIco(extension, isDir, up)}
@@ -78,7 +76,7 @@ const ItemCard = ({
             </MenuItem>
           )}
 
-          {up ? null : (
+          {up || !writable ? null : (
             <MenuItem>
               <i className="ri-delete-bin-line red" style={icoStyle}></i>
               {isDir ? "Remove Folder" : "Remove File"}

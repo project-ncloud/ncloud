@@ -9,6 +9,7 @@ function DriveCard({
   free,
   driveInfo,
   admin,
+  writable,
   running,
   onClick,
   address,
@@ -29,7 +30,7 @@ function DriveCard({
         dispatch({ type: "STORE_EXPLORER_DATA", data: res.data });
         dispatch({
           type: "STORE_EXPLORER_CONSTANT",
-          data: { path, address, name },
+          data: { path, address, name, admin, writable },
         });
         history.push("/explorer");
       }
@@ -51,6 +52,7 @@ function DriveCard({
         <div
           className={`driveCard ${!running ? "driveCard-offline" : null}`}
           onContextMenu={onClick}
+          onDoubleClick={() => openDrive()}
         >
           {admin ? <div className="useradminBadge">ADMIN</div> : null}
           <div className="top-card">

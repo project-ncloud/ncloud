@@ -5,7 +5,7 @@ function OnProcess({ percentage, result }) {
   return (
     <div style={{ width: "100%", height: "100%" }}>
       <div className="dropZone">
-        <i class="ri-loader-2-line"></i>
+        <i className="ri-loader-2-line"></i>
         <p>Processing Please Wait</p>
         <div className="uploadingBar-container">
           <div

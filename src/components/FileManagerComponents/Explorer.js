@@ -29,6 +29,7 @@ function Explorer() {
       } catch (Error) {}
     };
     openDrive();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, path]);
 
   const downDir = (name) => {
@@ -44,13 +45,22 @@ function Explorer() {
     }
   };
 
+  const myhome = () => {
+    if (path === explorerConst.path) history.goBack();
+  };
+
   return (
     <div className="fExplorer">
       <div className="fHeader fPadding">
         <h1>Explorer</h1>
       </div>
       <PathBar path={path} />
-      <ItemContainer path={path} upFunc={upDir} downFunc={downDir} />
+      <ItemContainer
+        path={path}
+        upFunc={upDir}
+        downFunc={downDir}
+        back={myhome}
+      />
     </div>
   );
 }

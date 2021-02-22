@@ -13,6 +13,7 @@ function DriveContainer({ data }) {
             running={item.is_running}
             address={item.address}
             path={item.path}
+            writable={item.writable}
             free={60}
             driveInfo="1GB Free out of 32GB"
           />

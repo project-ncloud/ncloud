@@ -6,12 +6,12 @@ function DragFile({ func, func2, isDragActive }) {
       <input {...func2()} />
       {isDragActive ? (
         <div className="dropZone">
-          <i class="ri-file-cloud-fill"></i>
+          <i className="ri-file-cloud-fill"></i>
           <p>Drop the files here ...</p>
         </div>
       ) : (
         <div className="dropZone">
-          <i class="ri-file-cloud-line"></i>
+          <i className="ri-file-cloud-line"></i>
           <p>Drag 'n' drop some files here, or click to select files</p>
         </div>
       )}

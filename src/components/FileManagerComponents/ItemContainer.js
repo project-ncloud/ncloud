@@ -2,19 +2,16 @@ import { React } from "react";
 import { useSelector } from "react-redux";
 import ItemCard from "./ItemCard";
 
-function ItemContainer({ upFunc, downFunc, path }) {
+function ItemContainer({ upFunc, downFunc, path, back }) {
   const itemData = useSelector((state) => state.explorerReducer.data);
   return (
     <div className="fItemContainer fPadding cardContainer">
       <ItemCard
         name="Go Back"
         path={path}
-        isDir={false}
-        size={6}
-        extension=".txt"
-        date="69th June, 6969"
         up={true}
         upFunc={upFunc}
+        back={back}
       />
       {itemData
         .filter((item) => {

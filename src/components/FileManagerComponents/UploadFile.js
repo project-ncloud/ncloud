@@ -88,6 +88,7 @@ function UploadFile({ func, show }) {
       resetUpload();
       LOGINFO(res.data.message);
     } catch (error) {
+      setUploadComplete(false);
       if (isCancel(error)) {
         LOGINFO("User cancelled the upload");
       } else {
@@ -128,6 +129,7 @@ function UploadFile({ func, show }) {
             fileInfo={fileInfo}
             percentage={percentage}
             func={cancelUpload}
+            result={uploadComplete}
           />
           <OnProcess percentage={percentage} result={uploadComplete} />
           <UploadResult result={uploadComplete} />

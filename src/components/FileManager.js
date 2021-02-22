@@ -3,19 +3,25 @@ import SideBar from "./FileManagerComponents/SideBar";
 import Explorer from "./FileManagerComponents/Explorer";
 import "../styles/fileManagerStyles.scss";
 import UploadFile from "./FileManagerComponents/UploadFile";
+import { useSelector } from "react-redux";
 
 function FileManager() {
+  const explorerConstant = useSelector((state) => state.explorerControlReducer);
   const [showUpload, setShowUpload] = useState(false);
-  const [canWrite, setWrite] = useState(true);
 
   const toggleUploadPanel = () => {
     setShowUpload(!showUpload);
   };
   return (
     <div className="fileManager">
-      <SideBar func={toggleUploadPanel} />
+      <SideBar
+        func={explorerConstant.writable ? toggleUploadPanel : () => {}}
+      />
       <Explorer />
-      <UploadFile show={showUpload} func={toggleUploadPanel} />
+      <UploadFile
+        show={showUpload && explorerConstant.writable}
+        func={toggleUploadPanel}
+      />
     </div>
   );
 }

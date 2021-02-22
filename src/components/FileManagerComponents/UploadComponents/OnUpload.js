@@ -1,11 +1,11 @@
 import React from "react";
 
-function OnUpload({ percentage, uploaded, fileInfo, func }) {
-  if (percentage === 100) return null;
+function OnUpload({ percentage, uploaded, fileInfo, func, result }) {
+  if (percentage === 100 || result !== null) return null;
   return (
     <div style={{ width: "100%", height: "100%" }}>
       <div className="dropZone">
-        <i class="ri-file-cloud-line"></i>
+        <i className="ri-file-cloud-line"></i>
         <p>
           {uploaded} uploaded of {fileInfo.sizeStr}
         </p>

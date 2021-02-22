@@ -113,7 +113,6 @@ const is_replace = (fileName) => {
   const ret = fileData.find((item) => {
     return item.name === fileName;
   });
-  console.log(ret);
   return ret;
 };
 
