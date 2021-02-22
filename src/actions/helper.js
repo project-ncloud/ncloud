@@ -15,4 +15,8 @@ const AUTH_HEADER = (data = {}) => {
   };
 };
 
-export { AUTH_HEADER, GET_TOKEN, SET_TOKEN };
+const TIMEOUT = (delay) => {
+  return new Promise((res) => setTimeout(res, delay));
+};
+
+export { AUTH_HEADER, GET_TOKEN, SET_TOKEN, TIMEOUT };

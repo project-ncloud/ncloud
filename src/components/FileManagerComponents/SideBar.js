@@ -1,7 +1,7 @@
 import axios from "axios";
 import React from "react";
 
-function SideBar() {
+function SideBar({ func }) {
   const handleFileUpload = async (e) => {
     const formData = new FormData();
     formData.append("file", e.target.files[0]);
@@ -25,16 +25,7 @@ function SideBar() {
   return (
     <div className="fSideBar">
       <i className="ri-hard-drive-fill"></i>
-      <label htmlFor="file-input">
-        <i className="ri-add-line">
-          <input
-            type="file"
-            id="file-input"
-            style={{ display: "none" }}
-            onChange={handleFileUpload}
-          />
-        </i>
-      </label>
+      <i className="ri-add-line" onClick={() => func()}></i>
       <i className="ri-folder-add-line"></i>
       <i className="ri-share-forward-line"></i>
     </div>

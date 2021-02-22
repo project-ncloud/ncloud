@@ -137,6 +137,14 @@ body {
   background: var(--subBackgroundColor);
 }
 
+.tileBg {
+  background: var(--tile-bg);
+}
+
+.listBg {
+  background: var(--list-bg);
+}
+
 a {
   text-decoration: none;
   color: var(--text-color);
