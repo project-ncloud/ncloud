@@ -111,7 +111,7 @@
     display: grid;
     place-content: center;
     cursor: pointer;
-    transition: background 280ms;
+    transition: background 280ms, color 280ms;
 
     &:hover {
       background: #ffffff05;
@@ -120,10 +120,10 @@
     &:first-child {
       color: var(--purple);
       font-size: 2rem;
-      cursor: default;
 
       &:hover {
-        background: none;
+        background: var(--purple);
+        color: var(--list-bg);
       }
     }
   }
