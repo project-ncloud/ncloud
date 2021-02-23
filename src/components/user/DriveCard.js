@@ -14,6 +14,7 @@ function DriveCard({
   onClick,
   address,
   path,
+  validUsers,
 }) {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -30,7 +31,7 @@ function DriveCard({
         dispatch({ type: "STORE_EXPLORER_DATA", data: res.data });
         dispatch({
           type: "STORE_EXPLORER_CONSTANT",
-          data: { path, address, name, admin, writable },
+          data: { path, address, name, admin, writable, validUsers },
         });
         history.push("/explorer");
       }
@@ -64,7 +65,7 @@ function DriveCard({
 
             <div className="top-card-drive-info">
               <div>{name}</div>
-              <div>{running ? driveInfo : "Currently offline"}</div>
+              <div>{running ? driveInfo.str : "Currently offline"}</div>
             </div>
           </div>
           <div className="down-card">

@@ -1,7 +1,19 @@
-import { React } from "react";
+import { React, useEffect } from "react";
+import { getSizeStr, is_user_admin } from "../../actions/explorer";
+import { TIMEOUT } from "../../actions/helper";
+import { get_users } from "../../actions/user";
 import DriveCard from "./DriveCard";
 
 function DriveContainer({ data }) {
+  useEffect(() => {
+    async function xx() {
+      await TIMEOUT(2000);
+      if (is_user_admin()) {
+        await get_users();
+      }
+    }
+    xx();
+  }, []);
   return (
     <div className="driveContainer">
       {data.map((item) => {
@@ -14,8 +26,15 @@ function DriveContainer({ data }) {
             address={item.address}
             path={item.path}
             writable={item.writable}
-            free={60}
-            driveInfo="1GB Free out of 32GB"
+            free={Math.floor((item.used * 100) / item.total)}
+            validUsers={item.validUsers}
+            driveInfo={{
+              str: `${getSizeStr(item.total - item.used)} free of ${getSizeStr(
+                item.total
+              )}`,
+              total: item.total,
+              used: item.used,
+            }}
           />
         );
       })}

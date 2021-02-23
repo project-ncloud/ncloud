@@ -90,7 +90,7 @@ const getSizeStr = (size) => {
   size /= 1024;
   if (size < 1024) return `${size.toFixed(2)} MB`;
   size /= 1024;
-  if (size < 1024) return `${size.toFixed(3)} GB`;
+  if (size < 1024) return `${size.toFixed(2)} GB`;
   size /= 1024;
   return `${size.toFixed(3)} TB`;
 };
@@ -116,4 +116,21 @@ const is_replace = (fileName) => {
   return ret;
 };
 
-export { openDrive, getIco, getExtension, getSizeStr, dirData, is_replace };
+const is_user_admin = () => {
+  const serverData = store.getState().serversReducer;
+  const ret = serverData.find((item) => {
+    return item.is_you_user_admin === true;
+  });
+
+  return ret;
+};
+
+export {
+  openDrive,
+  getIco,
+  getExtension,
+  getSizeStr,
+  dirData,
+  is_replace,
+  is_user_admin,
+};
