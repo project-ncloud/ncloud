@@ -1,0 +1,35 @@
+.player-wrapper {
+  position: absolute;
+  padding: 10px;
+  background: #171f2a;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  max-height: 90%;
+  min-width: 50%;
+  min-height: 50%;
+
+  h1 {
+    position: absolute;
+    z-index: -1;
+    color: var(--cyan);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .close-icon {
+    border-radius: 50%;
+    font-size: 1.5rem;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    transform: translateX(20px);
+    background: var(--red);
+    color: var(--title-bg);
+  }
+}

@@ -1,7 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getIco } from "../../actions/explorer";
 
 const icoStyle = { marginRight: "15px", fontSize: "20px" };
@@ -17,7 +17,9 @@ const ItemCard = ({
   upFunc,
   downFunc,
   back,
+  setVideoPlayerState,
 }) => {
+  const dispatch = useDispatch();
   const writable = useSelector(
     (state) => state.explorerControlReducer.writable
   );
@@ -76,6 +78,23 @@ const ItemCard = ({
               Download
             </MenuItem>
           )}
+
+          {!isDir &&
+            ".3gp.avi.flv.h264.mkv.m4v.mov.mp4.mpg.mpeg.swf.rm.vob.wmv.mp3".includes(
+              extension
+            ) && (
+              <MenuItem
+                onClick={() => {
+                  setVideoPlayerState({
+                    url: `http://127.0.0.1:6900/testRoute/?path=${path}&file_name=${file_name}`,
+                  });
+                  dispatch({ type: "TOGGLE_VIDEO_MODAL" });
+                }}
+              >
+                <i className="ri-play-fill purple" style={icoStyle}></i>
+                Play
+              </MenuItem>
+            )}
 
           {up || !writable ? null : (
             <MenuItem>
