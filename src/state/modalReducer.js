@@ -15,6 +15,7 @@ const INIT = {
   show_host_preferences: false,
 
   show_about: false,
+  show_video_modal: false,
 };
 
 const modalReducer = (state = INIT, action) => {
@@ -53,6 +54,10 @@ const modalReducer = (state = INIT, action) => {
     // About
     case "TOGGLE_SHOW_ABOUT":
       return { ...state, show_about: action.data };
+
+    case "TOGGLE_VIDEO_MODAL":
+      return { ...state, show_video_modal: !state.show_video_modal };
+
     case "RESET_MODAL_DATA":
       return INIT;
     default:

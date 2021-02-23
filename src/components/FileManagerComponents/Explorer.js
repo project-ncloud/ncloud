@@ -1,15 +1,17 @@
-import { React, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
 import axios from "axios";
-import PathBar from "./PathBar";
+import { React, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import ItemContainer from "./ItemContainer";
+import PathBar from "./PathBar";
+import VideoPlayerModal from "./VideoPlayerModal";
 
 function Explorer() {
   const path = useSelector((state) => state.explorerReducer.path);
   const explorerConst = useSelector((state) => state.explorerControlReducer);
   const dispatch = useDispatch();
   const history = useHistory();
+  const toggleModal = useSelector((state) => state.modalReducer);
 
   useEffect(() => {
     if (explorerConst.path === "") {
@@ -49,8 +51,15 @@ function Explorer() {
     if (path === explorerConst.path) history.goBack();
   };
 
+  const [videoPlayerState, setVideoPlayerState] = useState({
+    url: null,
+  });
+
   return (
     <div className="fExplorer">
+      {toggleModal.show_video_modal && (
+        <VideoPlayerModal videoPlayerState={videoPlayerState} />
+      )}
       <div className="fHeader fPadding">
         <h1>Explorer</h1>
       </div>
@@ -60,6 +69,7 @@ function Explorer() {
         upFunc={upDir}
         downFunc={downDir}
         back={myhome}
+        setVideoPlayerState={setVideoPlayerState}
       />
     </div>
   );

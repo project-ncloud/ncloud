@@ -2,7 +2,7 @@ import { React } from "react";
 import { useSelector } from "react-redux";
 import ItemCard from "./ItemCard";
 
-function ItemContainer({ upFunc, downFunc, path, back }) {
+function ItemContainer({ upFunc, downFunc, path, back, setVideoPlayerState }) {
   const itemData = useSelector((state) => state.explorerReducer.data);
   return (
     <div className="fItemContainer fPadding cardContainer">
@@ -45,6 +45,7 @@ function ItemContainer({ upFunc, downFunc, path, back }) {
               size={item.size}
               extension={item.extension}
               date="69th June, 6969"
+              setVideoPlayerState={setVideoPlayerState}
             />
           );
         })}
