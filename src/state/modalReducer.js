@@ -53,6 +53,8 @@ const modalReducer = (state = INIT, action) => {
     // About
     case "TOGGLE_SHOW_ABOUT":
       return { ...state, show_about: action.data };
+    case "RESET_MODAL_DATA":
+      return INIT;
     default:
       return state;
   }

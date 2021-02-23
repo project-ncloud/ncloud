@@ -17,6 +17,8 @@ const filteredoutUserReducer = (state = INIT, action) => {
         };
       });
       return { ...state, users: y };
+    case "RESET_FUSER":
+      return INIT;
     default:
       return state;
   }

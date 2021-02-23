@@ -8,6 +8,8 @@ const sharedServersReducer = (state = [], action) => {
         return item.name !== name && item.address !== address;
       });
       return fState;
+    case "RESET_SHARED_SERVER":
+      return [];
     default:
       return state;
   }

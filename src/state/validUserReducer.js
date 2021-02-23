@@ -55,6 +55,8 @@ const validUserReducer = (state = INIT, action) => {
         };
       });
       return { ...state, validUsers: a };
+    case "RESET_VALID_USER":
+      return INIT;
     default:
       return state;
   }

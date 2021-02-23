@@ -17,6 +17,8 @@ const managerReducer = (state = INIT, action) => {
         };
       });
       return { ...state, managers: y };
+    case "RESET_MANAGER":
+      return INIT;
     default:
       return state;
   }

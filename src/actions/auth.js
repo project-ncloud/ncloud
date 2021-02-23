@@ -47,8 +47,25 @@ const LOGIN = async (data) => {
   }
 };
 
-const LOGOUT = async () => {
+const RESET_STATE = () => {
+  store.dispatch({ type: "RESET_SERVER" });
   store.dispatch({ type: "RESET_SERVERS" });
+  store.dispatch({ type: "RESET_ALIVE_COUNT" });
+  store.dispatch({ type: "CLEAR_LOGS" });
+  store.dispatch({ type: "RESET_EXPLORER_CONSTANT" });
+  store.dispatch({ type: "RESET_EXPLORER_DATA" });
+  store.dispatch({ type: "RESET_FUSER" });
+  store.dispatch({ type: "RESET_HOST" });
+  store.dispatch({ type: "RESET_MANAGER" });
+  store.dispatch({ type: "RESET_MODAL_DATA" });
+  store.dispatch({ type: "RESET_PENDING_USER" });
+  store.dispatch({ type: "RESET_SHARED_SERVER" });
+  store.dispatch({ type: "RESET_UI" });
+  store.dispatch({ type: "RESET_USER" });
+  store.dispatch({ type: "RESET_VALID_USER" });
+};
+
+const LOGOUT = async () => {
   SET_TOKEN("");
   return {
     type: "LOGIN",
@@ -93,4 +110,4 @@ const REGISTER = async (data) => {
   }
 };
 
-export { LOGIN, IS_TOKEN_VALID, LOGOUT, REGISTER };
+export { LOGIN, IS_TOKEN_VALID, LOGOUT, REGISTER, RESET_STATE };

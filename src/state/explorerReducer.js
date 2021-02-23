@@ -9,6 +9,8 @@ const explorerReducer = (state = INIT, action) => {
       return action.data;
     case "STORE_EXPLORER_PATH":
       return { ...state, path: action.data };
+    case "RESET_EXPLORER_DATA":
+      return INIT;
     default:
       return state;
   }

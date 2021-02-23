@@ -17,6 +17,8 @@ const userReducer = (state = INIT, action) => {
         };
       });
       return { ...state, users: y };
+    case "RESET_USER":
+      return INIT;
     default:
       return state;
   }

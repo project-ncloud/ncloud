@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { LOGIN, IS_TOKEN_VALID } from "../actions/auth";
+import { LOGIN, IS_TOKEN_VALID, RESET_STATE } from "../actions/auth";
 import { LOGINFO } from "../actions/log";
 
 import "../styles/auth/authBase.scss";
@@ -20,6 +20,7 @@ function Login() {
 
   useEffect(() => {
     async function checkingToken() {
+      RESET_STATE();
       const token = localStorage.getItem("NCLOUD_TOKEN");
       if (token !== null) {
         const obj = await IS_TOKEN_VALID(token);
