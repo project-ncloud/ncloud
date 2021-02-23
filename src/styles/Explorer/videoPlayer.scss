@@ -7,6 +7,17 @@
   transform: translate(-50%, -50%);
   z-index: 5;
   max-height: 90%;
+  min-width: 50%;
+  min-height: 50%;
+
+  h1 {
+    position: absolute;
+    z-index: -1;
+    color: var(--cyan);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 
   .close-icon {
     border-radius: 50%;

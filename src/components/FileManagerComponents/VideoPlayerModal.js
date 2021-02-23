@@ -13,6 +13,7 @@ const VideoPlayerModal = ({ videoPlayerState }) => {
       >
         <i className="ri-close-line" />
       </div>
+      <h1>Playing Audio...</h1>
       <ReactPlayer
         onEnded={() => dispatch({ type: "TOGGLE_VIDEO_MODAL" })}
         playing
