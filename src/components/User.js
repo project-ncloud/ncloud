@@ -6,6 +6,7 @@ import { GET_TOKEN } from "../actions/helper";
 import Header from "./user/Header";
 import "../styles/userBase.scss";
 import DriveContainer from "./user/DriveContainer";
+import Modals from "./Modals";
 import { getServers } from "../userActions/server";
 
 function User() {
@@ -49,6 +50,7 @@ function User() {
           <DriveContainer key="sharedDrives" data={sharedServers} />
         </>
       )}
+      <Modals />
     </>
   );
 }

@@ -9,6 +9,7 @@ const INIT = {
   show_validUsersList: false,
   show_addValidUser: false,
   show_addUserAdmin: false,
+  show_sharedUsersList: false,
 
   show_ncloud_preferences: false,
   show_server_preferences: false,
@@ -42,6 +43,8 @@ const modalReducer = (state = INIT, action) => {
       return { ...state, show_addValidUser: action.data };
     case "TOGGLE_ADD_USER_ADMIN":
       return { ...state, show_addUserAdmin: action.data };
+    case "TOGGLE_SHOW_SHARED_USERS":
+      return { ...state, show_sharedUsersList: action.data };
 
     //Preferences
     case "TOGGLE_NCLOUD_PREFERENCES":

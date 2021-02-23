@@ -20,14 +20,8 @@ function DriveContainer({ data }) {
         return (
           <DriveCard
             key={item.host_name + "drive"}
-            name={item.host_name}
-            admin={item.is_you_user_admin}
-            running={item.is_running}
-            address={item.address}
-            path={item.path}
-            writable={item.writable}
+            data={item}
             free={Math.floor((item.used * 100) / item.total)}
-            validUsers={item.validUsers}
             driveInfo={{
               str: `${getSizeStr(item.total - item.used)} free of ${getSizeStr(
                 item.total

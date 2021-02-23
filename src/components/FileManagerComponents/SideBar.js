@@ -1,9 +1,11 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { get_name } from "../../actions/host";
 
 function SideBar({ func }) {
   const history = useHistory();
+  const dispatch = useDispatch();
   const explorerConstants = useSelector(
     (state) => state.explorerControlReducer
   );
@@ -29,7 +31,19 @@ function SideBar({ func }) {
         className={`ri-share-forward-line ${
           !explorerConstants.admin ? "disabled" : null
         }`}
-        onClick={() => {}}
+        onClick={() => {
+          const users = explorerConstants.shared.shared.map((item) => {
+            return {
+              username: item,
+              name: get_name(item),
+            };
+          });
+          dispatch({
+            type: "STORE_SUSER",
+            data: users,
+          });
+          dispatch({ type: "TOGGLE_SHOW_SHARED_USERS", data: true });
+        }}
       ></i>
     </div>
   );

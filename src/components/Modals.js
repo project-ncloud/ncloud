@@ -14,6 +14,7 @@ import ServerPreferences from "./modal/ServerPreferences";
 import User from "./modal/User";
 import UserAdmin from "./modal/UserAdmin";
 import ValidUsers from "./modal/ValidUsers";
+import SharedUser from "./modal/SharedUser";
 
 function Modals() {
   const toggleModal = useSelector((state) => state.modalReducer);
@@ -129,6 +130,19 @@ function Modals() {
         }}
       >
         <UserAdmin />
+      </Modal>
+
+      <Modal
+        name="Shared Users"
+        specClass="modalList addServer"
+        width="800px"
+        has_list={true}
+        showMe={toggleModal.show_sharedUsersList}
+        func={() => {
+          dispatch({ type: "TOGGLE_SHOW_SHARED_USERS", data: false });
+        }}
+      >
+        <SharedUser />
       </Modal>
 
       <Modal

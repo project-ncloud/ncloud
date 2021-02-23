@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import PathBar from "./PathBar";
 import ItemContainer from "./ItemContainer";
+import Modals from "../Modals";
 
 function Explorer() {
   const path = useSelector((state) => state.explorerReducer.path);
@@ -50,18 +51,21 @@ function Explorer() {
   };
 
   return (
-    <div className="fExplorer">
-      <div className="fHeader fPadding">
-        <h1>Explorer</h1>
+    <>
+      <div className="fExplorer">
+        <div className="fHeader fPadding">
+          <h1>Explorer</h1>
+        </div>
+        <PathBar path={path} />
+        <ItemContainer
+          path={path}
+          upFunc={upDir}
+          downFunc={downDir}
+          back={myhome}
+        />
       </div>
-      <PathBar path={path} />
-      <ItemContainer
-        path={path}
-        upFunc={upDir}
-        downFunc={downDir}
-        back={myhome}
-      />
-    </div>
+      <Modals />
+    </>
   );
 }
 

@@ -4,18 +4,7 @@ import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import useClipboard from "react-use-clipboard";
-function DriveCard({
-  name,
-  free,
-  driveInfo,
-  admin,
-  writable,
-  running,
-  onClick,
-  address,
-  path,
-  validUsers,
-}) {
+function DriveCard({ free, driveInfo, onClick, data }) {
   const history = useHistory();
   const dispatch = useDispatch();
   function handleClick(e, data) {
@@ -24,14 +13,22 @@ function DriveCard({
 
   const openDrive = async () => {
     try {
-      const res = await axios.get(`http://${address}/dir/`, {
-        params: { path },
+      const res = await axios.get(`http://${data.address}/dir/`, {
+        params: { path: data.path },
       });
       if (res.status === 200) {
         dispatch({ type: "STORE_EXPLORER_DATA", data: res.data });
         dispatch({
           type: "STORE_EXPLORER_CONSTANT",
-          data: { path, address, name, admin, writable, validUsers },
+          data: {
+            path: data.path,
+            address: data.address,
+            name: data.host_name,
+            admin: data.is_you_user_admin,
+            writable: data.writable,
+            validUsers: data.validUsers,
+            shared: data.shared,
+          },
         });
         history.push("/explorer");
       }
@@ -40,7 +37,7 @@ function DriveCard({
 
   // eslint-disable-next-line no-unused-vars
   const [isCopied, setCopied] = useClipboard(
-    `\\\\${address.split(":")[0]}\\${name}`,
+    `\\\\${data.address.split(":")[0]}\\${data.host_name}`,
     {
       successDuration: 1000,
     }
@@ -49,28 +46,32 @@ function DriveCard({
   const icoStyle = { marginRight: "15px", fontSize: "20px" };
   return (
     <>
-      <ContextMenuTrigger id={name + "contextMenu"}>
+      <ContextMenuTrigger id={data.host_name + "contextMenu"}>
         <div
-          className={`driveCard ${!running ? "driveCard-offline" : null}`}
+          className={`driveCard ${
+            !data.is_running ? "driveCard-offline" : null
+          }`}
           onContextMenu={onClick}
           onDoubleClick={() => openDrive()}
         >
-          {admin ? <div className="useradminBadge">ADMIN</div> : null}
+          {data.is_you_user_admin ? (
+            <div className="useradminBadge">ADMIN</div>
+          ) : null}
           <div className="top-card">
-            {running ? (
+            {data.is_running ? (
               <i className="ri-hard-drive-2-line"></i>
             ) : (
               <i className="ri-error-warning-line"></i>
             )}
 
             <div className="top-card-drive-info">
-              <div>{name}</div>
-              <div>{running ? driveInfo.str : "Currently offline"}</div>
+              <div>{data.host_name}</div>
+              <div>{data.is_running ? driveInfo.str : "Currently offline"}</div>
             </div>
           </div>
           <div className="down-card">
             <div className="progressBar">
-              {running ? (
+              {data.is_running ? (
                 <div
                   className={`bar ${
                     free > 90 ? "red" : free > 60 ? "yellow" : null
@@ -82,8 +83,8 @@ function DriveCard({
           </div>
         </div>
       </ContextMenuTrigger>
-      <ContextMenu id={name + "contextMenu"}>
-        {running ? (
+      <ContextMenu id={data.host_name + "contextMenu"}>
+        {data.is_running ? (
           <>
             <MenuItem onClick={openDrive}>
               <i className="ri-folder-line purple" style={icoStyle}></i>
@@ -93,7 +94,7 @@ function DriveCard({
               <i className="ri-clipboard-line yellow" style={icoStyle}></i>
               Copy SMB URL
             </MenuItem>
-            {admin ? (
+            {data.is_you_user_admin ? (
               <MenuItem onClick={handleClick}>
                 <i style={icoStyle} className="ri-settings-3-line"></i>Settings
               </MenuItem>
