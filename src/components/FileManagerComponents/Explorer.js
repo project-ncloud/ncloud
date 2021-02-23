@@ -71,6 +71,7 @@ function Explorer() {
           upFunc={upDir}
           downFunc={downDir}
           back={myhome}
+          setVideoPlayerState={setVideoPlayerState}
         />
       </div>
       <Modals />
