@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import ItemContainer from "./ItemContainer";
 import PathBar from "./PathBar";
-import Modals from "../Modals";
 import VideoPlayerModal from "./VideoPlayerModal";
 import UserModals from "../UserModals";
 import AudioPlayerModal from "./AudioPlayerModal";

@@ -1,9 +1,7 @@
 import axios from "axios";
-import { React, useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { React, useState } from "react";
 import { AUTH_HEADER } from "../../actions/helper";
 import { LOGERR, LOGINFO } from "../../actions/log";
-import { getServers, reFetchServer } from "../../actions/server";
 import ModalButtom from "./subcomponents/ModalButtom";
 import ModalButton from "./subcomponents/ModalButton";
 import ModalCheckbox from "./subcomponents/ModalCheckbox";

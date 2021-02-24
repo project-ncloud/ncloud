@@ -10,7 +10,6 @@ import { getServers } from "../userActions/server";
 import UserModals from "./UserModals";
 
 function User() {
-  const loginInfo = useSelector((state) => state.authReducer);
   const servers = useSelector((state) => state.serversReducer);
   const sharedServers = useSelector((state) => state.sharedServersReducer);
   const history = useHistory();
@@ -19,7 +18,7 @@ function User() {
   useEffect(() => {
     async function checkingToken() {
       const token = GET_TOKEN();
-      if (token !== null) {
+      if (token !== null && token !== "" && token !== '""') {
         const obj = await IS_TOKEN_VALID(token);
         dispatch({ type: "REFRESH_AUTH", data: obj.data });
         if (obj.status) {
@@ -29,15 +28,14 @@ function User() {
           } else {
             history.push("/admin");
           }
-        } else {
-          history.push("/");
         }
       } else {
         history.push("/");
       }
     }
-    checkingToken();
-  }, [dispatch, history, loginInfo.username]);
+    return checkingToken();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>

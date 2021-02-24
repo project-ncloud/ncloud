@@ -4,7 +4,6 @@ import { get_name } from "../../actions/host";
 import ModalButtom from "./subcomponents/ModalButtom";
 import ModalButton from "./subcomponents/ModalButton";
 import ModalEmpty from "./subcomponents/ModalEmpty";
-import ModalError from "./subcomponents/ModalError";
 import UserRow from "./UserRow";
 import {
   get_AddSharedUsers,
@@ -12,13 +11,7 @@ import {
 } from "../../actions/user_admin";
 import { syncServerData } from "../../actions/explorer";
 
-const ERR_OBJ = {
-  is_error: false,
-  msg: "",
-};
-
 function SharedUser({ searchstr, func }) {
-  const [error, setErr] = useState(ERR_OBJ);
   const sharedUsers = useSelector((state) => state.sharedUserReducer.users);
   const explorerConst = useSelector((state) => state.explorerControlReducer);
   const dispatch = useDispatch();
@@ -72,8 +65,6 @@ function SharedUser({ searchstr, func }) {
           );
         })}
       </div>
-
-      <ModalError error={error.is_error} msg={error.msg} />
 
       <ModalButtom busy={busy}>
         <ModalButton

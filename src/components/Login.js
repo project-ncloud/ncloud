@@ -22,7 +22,7 @@ function Login() {
     async function checkingToken() {
       RESET_STATE();
       const token = localStorage.getItem("NCLOUD_TOKEN");
-      if (token !== null) {
+      if (token !== null && token !== "" && token !== '""') {
         const obj = await IS_TOKEN_VALID(token);
         if (obj.status) {
           const { manager, admin } = obj.data;
@@ -35,8 +35,23 @@ function Login() {
         }
       }
     }
-    checkingToken();
-  }, [history, loginInfo.name, loginInfo.username]);
+    return checkingToken();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (loginInfo.is_admin || loginInfo.is_manager) {
+      history.push("/admin");
+    } else if (
+      loginInfo.name !== null &&
+      loginInfo.name !== "" &&
+      loginInfo.username !== null &&
+      loginInfo.username !== ""
+    ) {
+      history.push("/user");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loginInfo]);
 
   const login = async (e) => {
     e.preventDefault();
@@ -48,11 +63,11 @@ function Login() {
     });
     dispatch(block);
     if (block.data.username === null || block.data.username === "") {
-      setWarn(true);
       setErrMsg("Login Failed");
+      setWarn(true);
     } else {
-      setWarn(false);
       setErrMsg("");
+      setWarn(false);
     }
     setBusy(false);
   };

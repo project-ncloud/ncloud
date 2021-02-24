@@ -96,7 +96,6 @@ const REGISTER = async (data) => {
       KEY: "st67hq",
     });
     const dataN = res.data;
-    console.log(dataN);
 
     return {
       error: !dataN.status,

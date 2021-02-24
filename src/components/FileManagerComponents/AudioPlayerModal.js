@@ -1,4 +1,3 @@
-import ReactPlayer from "react-player";
 import { useDispatch } from "react-redux";
 import "../../styles/Explorer/audioPlayer.scss";
 

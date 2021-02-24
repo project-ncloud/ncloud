@@ -1,23 +1,15 @@
-import axios from "axios";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { get_name } from "../../actions/host";
 import ModalButtom from "./subcomponents/ModalButtom";
 import ModalButton from "./subcomponents/ModalButton";
 import ModalEmpty from "./subcomponents/ModalEmpty";
-import ModalError from "./subcomponents/ModalError";
 import UserRow from "./UserRow";
 import { add_shared_user } from "../../actions/user_admin";
 import { syncServerData } from "../../actions/explorer";
 
-const ERR_OBJ = {
-  is_error: false,
-  msg: "",
-};
-
 const AddSharedUser = ({ searchstr, func }) => {
   const explorerConst = useSelector((state) => state.explorerControlReducer);
-  const [error, setErr] = useState(ERR_OBJ);
   const eligibleSharedUsers = useSelector(
     (state) => state.eligibleSharedUserReducer.users
   );

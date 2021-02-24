@@ -20,7 +20,8 @@ function Dashboard({ toggle }) {
       if (authObj.is_admin) await get_managers();
     }
     xx();
-  }, [authObj.is_admin]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <section className={`dashboard ${toggle ? null : "hide"}`} id="dashboard">
