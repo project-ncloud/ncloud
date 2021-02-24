@@ -1,3 +1,5 @@
+import { get_name } from "../actions/host";
+
 const INIT = {
   count: 0,
   users: [],
@@ -17,6 +19,19 @@ const sharedUserReducer = (state = INIT, action) => {
         };
       });
       return { ...state, users: y };
+    case "POP_SUSER":
+      let pop_users = state.users.map((item) => {
+        return item.username !== action.data;
+      });
+      return { count: state.count - 1, users: pop_users };
+    case "PUSH_SUSER":
+      return {
+        count: state.count + 1,
+        users: [
+          ...state.users,
+          { name: get_name(action.data), username: action.data, value: false },
+        ],
+      };
     case "RESET_SUSER":
       return INIT;
     default:

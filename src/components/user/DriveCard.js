@@ -24,6 +24,7 @@ function DriveCard({ free, driveInfo, onClick, data }) {
             path: data.path,
             address: data.address,
             name: data.host_name,
+            server_name: data.server_name,
             admin: data.is_you_user_admin,
             writable: data.writable,
             validUsers: data.validUsers,
@@ -94,11 +95,6 @@ function DriveCard({ free, driveInfo, onClick, data }) {
               <i className="ri-clipboard-line yellow" style={icoStyle}></i>
               Copy SMB URL
             </MenuItem>
-            {data.is_you_user_admin ? (
-              <MenuItem onClick={handleClick}>
-                <i style={icoStyle} className="ri-settings-3-line"></i>Settings
-              </MenuItem>
-            ) : null}
           </>
         ) : (
           <MenuItem onClick={handleClick}>

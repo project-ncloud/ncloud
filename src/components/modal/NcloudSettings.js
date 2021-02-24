@@ -72,7 +72,6 @@ function NcloudSettings({ func }) {
     dummy();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [modalToggle]);
-
   return (
     <>
       <div className="list userListM" style={{ height: "350px" }}>

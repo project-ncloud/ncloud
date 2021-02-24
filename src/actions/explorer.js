@@ -1,5 +1,8 @@
 import store from "../store";
 import axios from "axios";
+import { getServers } from "../userActions/server";
+import { TIMEOUT } from "./helper";
+import { get_name } from "../actions/host";
 const openDrive = () => {};
 const unknownFileIco = <i className="ri-file-unknow-line"></i>;
 
@@ -38,7 +41,7 @@ const MAPExtension = [
     element: <i className="ri-image-fill"></i>,
   },
   {
-    extension: ".3gp.avi.flv.h264.mkv.m4v.mov.mp4.mpg.mpeg.swf.rm.vob.wmv",
+    extension: ".3gp.avi.flv.h264.mkv.m4v.mov.mp4.mpg.mpeg.swf.rm.vob.wmv.webm",
     element: <i className="ri-film-fill"></i>,
   },
   {
@@ -125,6 +128,44 @@ const is_user_admin = () => {
   return ret;
 };
 
+const syncServerData = async () => {
+  const explorerConst = store.getState().explorerControlReducer;
+  await getServers();
+  await TIMEOUT(1000);
+  const servers = store.getState().serversReducer;
+  const data = servers.find((item) => {
+    return (
+      item.address === explorerConst.address &&
+      item.host_name === explorerConst.name
+    );
+  });
+
+  store.dispatch({
+    type: "STORE_EXPLORER_CONSTANT",
+    data: {
+      path: data.path,
+      address: data.address,
+      name: data.host_name,
+      server_name: data.server_name,
+      admin: data.is_you_user_admin,
+      writable: data.writable,
+      validUsers: data.validUsers,
+      shared: data.shared,
+    },
+  });
+
+  const users = data.shared.shared.map((item) => {
+    return {
+      username: item,
+      name: get_name(item),
+    };
+  });
+  store.dispatch({
+    type: "STORE_SUSER",
+    data: users,
+  });
+};
+
 export {
   openDrive,
   getIco,
@@ -133,4 +174,5 @@ export {
   dirData,
   is_replace,
   is_user_admin,
+  syncServerData,
 };

@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { get_name } from "../../actions/host";
@@ -6,10 +7,7 @@ import ModalButton from "./subcomponents/ModalButton";
 import ModalEmpty from "./subcomponents/ModalEmpty";
 import ModalError from "./subcomponents/ModalError";
 import UserRow from "./UserRow";
-import {
-  get_AddSharedUsers,
-  remove_shared_user,
-} from "../../actions/user_admin";
+import { add_shared_user } from "../../actions/user_admin";
 import { syncServerData } from "../../actions/explorer";
 
 const ERR_OBJ = {
@@ -17,24 +15,26 @@ const ERR_OBJ = {
   msg: "",
 };
 
-function SharedUser({ searchstr, func }) {
-  const [error, setErr] = useState(ERR_OBJ);
-  const sharedUsers = useSelector((state) => state.sharedUserReducer.users);
+const AddSharedUser = ({ searchstr, func }) => {
   const explorerConst = useSelector((state) => state.explorerControlReducer);
+  const [error, setErr] = useState(ERR_OBJ);
+  const eligibleSharedUsers = useSelector(
+    (state) => state.eligibleSharedUserReducer.users
+  );
   const dispatch = useDispatch();
   const [busy, setBusy] = useState(false);
   const switchUser = (key, val) => {
-    dispatch({ type: "TOGGLE_SUSER", data: { key, val } });
+    dispatch({ type: "TOGGLE_ESUSER", data: { key, val } });
   };
 
-  const removeSharedUser = async () => {
+  const addSharedUser = async () => {
     setBusy(true);
-    const selectedUsers = sharedUsers.filter((item) => {
+    const selectedUsers = eligibleSharedUsers.filter((item) => {
       return item.value === true;
     });
 
     for (let i = 0; i < selectedUsers.length; i++) {
-      await remove_shared_user({
+      await add_shared_user({
         server_name: explorerConst.server_name,
         server_address: explorerConst.address,
         host_name: explorerConst.name,
@@ -42,12 +42,13 @@ function SharedUser({ searchstr, func }) {
       });
     }
     await syncServerData();
-    await setBusy(false);
+    setBusy(false);
+    func();
+    dispatch({ type: "TOGGLE_SHOW_SHARED_USERS", data: true });
   };
-
   return (
     <>
-      {sharedUsers.length > 0 ? (
+      {eligibleSharedUsers.length > 0 ? (
         <div className="list listHead" style={{ height: "max-content" }}>
           <div className="row pendingUserRow">
             <div className="col">Name</div>
@@ -59,7 +60,7 @@ function SharedUser({ searchstr, func }) {
         <ModalEmpty />
       )}
       <div className="list userListM" style={{ height: "350px" }}>
-        {sharedUsers.map((item) => {
+        {eligibleSharedUsers.map((item) => {
           return (
             <UserRow
               key={item.username}
@@ -73,31 +74,7 @@ function SharedUser({ searchstr, func }) {
         })}
       </div>
 
-      <ModalError error={error.is_error} msg={error.msg} />
-
       <ModalButtom busy={busy}>
-        <ModalButton
-          key="key11"
-          name="Preferences"
-          type2={true}
-          onClick={() => {
-            func();
-            dispatch({ type: "TOGGLE_SHOW_SHARED_PREFERENCES", data: true });
-          }}
-        />
-        <ModalButton
-          key="key0"
-          name="Add Shared User"
-          type2={true}
-          onClick={() => {
-            func();
-            let users = get_AddSharedUsers().map((item) => {
-              return { ...item, value: false };
-            });
-            dispatch({ type: "STORE_ESUSER", data: users });
-            dispatch({ type: "TOGGLE_ADD_SHARED_USERS", data: true });
-          }}
-        />
         <ModalButton
           key="key1"
           name="Cancel"
@@ -108,12 +85,12 @@ function SharedUser({ searchstr, func }) {
         />
         <ModalButton
           key="key2"
-          name="Remove"
-          onClick={() => removeSharedUser()}
+          name="Add Users"
+          onClick={() => addSharedUser()}
         />
       </ModalButtom>
     </>
   );
-}
+};
 
-export default SharedUser;
+export default AddSharedUser;

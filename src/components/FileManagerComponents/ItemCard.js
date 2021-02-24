@@ -80,7 +80,7 @@ const ItemCard = ({
           )}
 
           {!isDir &&
-            ".3gp.avi.flv.h264.mkv.m4v.mov.mp4.mpg.mpeg.swf.rm.vob.wmv.mp3".includes(
+            ".3gp.avi.flv.h264.mkv.m4v.mov.mp4.webm.mpg.mpeg.swf.rm.vob.wmv.mp3".includes(
               extension
             ) && (
               <MenuItem

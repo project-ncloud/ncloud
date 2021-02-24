@@ -10,10 +10,12 @@ const INIT = {
   show_addValidUser: false,
   show_addUserAdmin: false,
   show_sharedUsersList: false,
+  show_addSharedUser: false,
 
   show_ncloud_preferences: false,
   show_server_preferences: false,
   show_host_preferences: false,
+  show_shared_preferences: false,
 
   show_about: false,
   show_video_modal: false,
@@ -46,6 +48,8 @@ const modalReducer = (state = INIT, action) => {
       return { ...state, show_addUserAdmin: action.data };
     case "TOGGLE_SHOW_SHARED_USERS":
       return { ...state, show_sharedUsersList: action.data };
+    case "TOGGLE_ADD_SHARED_USERS":
+      return { ...state, show_addSharedUser: action.data };
 
     //Preferences
     case "TOGGLE_NCLOUD_PREFERENCES":
@@ -54,6 +58,8 @@ const modalReducer = (state = INIT, action) => {
       return { ...state, show_server_preferences: action.data };
     case "TOGGLE_HOST_PREFERENCES":
       return { ...state, show_host_preferences: action.data };
+    case "TOGGLE_SHOW_SHARED_PREFERENCES":
+      return { ...state, show_shared_preferences: action.data };
     // About
     case "TOGGLE_SHOW_ABOUT":
       return { ...state, show_about: action.data };

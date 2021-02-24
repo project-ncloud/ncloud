@@ -1,6 +1,7 @@
 import store from "../store";
 import axios from "axios";
 import { AUTH_HEADER } from "./helper";
+import { LOGERR, LOGINFO } from "./log";
 const setUserAdmin = async () => {
   const { hostName, hostPath, validUsers } = store.getState().validUserReducer;
   const { name, address } = store.getState().serverReducer;
@@ -43,4 +44,60 @@ const setUserAdmin = async () => {
   }
 };
 
-export { setUserAdmin };
+const get_AddSharedUsers = () => {
+  const validUsers = store.getState().explorerControlReducer.validUsers;
+  const sharedUsers = store.getState().sharedUserReducer.users;
+  const users = store.getState().userReducer.users;
+  let excludeUsers = validUsers.map((item) => item);
+  sharedUsers.forEach((item) => {
+    excludeUsers.push(item.username);
+  });
+  const filteredUsers = users.filter((item) => {
+    return !excludeUsers.includes(item.username);
+  });
+  return filteredUsers;
+};
+
+const add_shared_user = async (block) => {
+  try {
+    const res = await axios.post(
+      "/userAdmin/sharedUser/",
+      block,
+      AUTH_HEADER()
+    );
+    if (res.status === 200) {
+      if (!res.data.status) {
+        throw Error(res.data.msg);
+      }
+      LOGINFO(res.data.msg);
+      //store.dispatch({ type: "PUSH_SUSER", data: block.username });
+    }
+  } catch (Error) {
+    LOGERR(Error.message);
+  }
+};
+
+const remove_shared_user = async (block) => {
+  try {
+    const res = await axios.delete(
+      "/userAdmin/sharedUser/",
+      AUTH_HEADER(block)
+    );
+    if (res.status === 200) {
+      if (!res.data.status) {
+        throw Error(res.data.msg);
+      }
+      LOGINFO(res.data.msg);
+      //store.dispatch({ type: "PUSH_SUSER", data: block.username });
+    }
+  } catch (Error) {
+    LOGERR(Error.message);
+  }
+};
+
+export {
+  setUserAdmin,
+  get_AddSharedUsers,
+  add_shared_user,
+  remove_shared_user,
+};

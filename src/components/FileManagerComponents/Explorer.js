@@ -6,6 +6,7 @@ import ItemContainer from "./ItemContainer";
 import PathBar from "./PathBar";
 import Modals from "../Modals";
 import VideoPlayerModal from "./VideoPlayerModal";
+import UserModals from "../UserModals";
 
 function Explorer() {
   const path = useSelector((state) => state.explorerReducer.path);
@@ -74,7 +75,7 @@ function Explorer() {
           setVideoPlayerState={setVideoPlayerState}
         />
       </div>
-      <Modals />
+      <UserModals />
     </>
   );
 }

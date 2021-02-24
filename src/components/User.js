@@ -6,8 +6,8 @@ import { GET_TOKEN } from "../actions/helper";
 import Header from "./user/Header";
 import "../styles/userBase.scss";
 import DriveContainer from "./user/DriveContainer";
-import Modals from "./Modals";
 import { getServers } from "../userActions/server";
+import UserModals from "./UserModals";
 
 function User() {
   const loginInfo = useSelector((state) => state.authReducer);
@@ -50,7 +50,7 @@ function User() {
           <DriveContainer key="sharedDrives" data={sharedServers} />
         </>
       )}
-      <Modals />
+      <UserModals />
     </>
   );
 }
