@@ -21,6 +21,7 @@ const VideoPlayerModal = ({ videoPlayerState }) => {
         url={videoPlayerState.url}
         width="100%"
         height="100%"
+        controls
       />
     </div>
   );

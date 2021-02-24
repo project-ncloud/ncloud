@@ -18,6 +18,7 @@ const ItemCard = ({
   downFunc,
   back,
   setVideoPlayerState,
+  setAudioPlayerState,
 }) => {
   const dispatch = useDispatch();
   const writable = useSelector(
@@ -37,6 +38,10 @@ const ItemCard = ({
     link.href = `http://127.0.0.1:6900/testRoute/?path=${path}&file_name=${file_name}`;
     link.target = "blank";
     link.click();
+  };
+
+  const getName = (fileName) => {
+    return fileName.substr(0, fileName.lastIndexOf("."));
   };
 
   return (
@@ -80,7 +85,7 @@ const ItemCard = ({
           )}
 
           {!isDir &&
-            ".3gp.avi.flv.h264.mkv.m4v.mov.mp4.webm.mpg.mpeg.swf.rm.vob.wmv.mp3".includes(
+            ".3gp.avi.flv.h264.mkv.m4v.mov.mp4.webm.mpg.mpeg.swf.rm.vob.wmv".includes(
               extension
             ) && (
               <MenuItem
@@ -95,6 +100,21 @@ const ItemCard = ({
                 Play
               </MenuItem>
             )}
+
+          {!isDir && ".mp3.m4a.wav.aif.midi.ogg.mpa.wma".includes(extension) && (
+            <MenuItem
+              onClick={() => {
+                setAudioPlayerState({
+                  url: `http://127.0.0.1:6900/testRoute/?path=${path}&file_name=${file_name}`,
+                  name: getName(file_name),
+                });
+                dispatch({ type: "TOGGLE_AUDIO_MODAL" });
+              }}
+            >
+              <i className="ri-play-fill purple" style={icoStyle}></i>
+              Play
+            </MenuItem>
+          )}
 
           {up || !writable ? null : (
             <MenuItem>

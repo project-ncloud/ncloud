@@ -7,6 +7,7 @@ import PathBar from "./PathBar";
 import Modals from "../Modals";
 import VideoPlayerModal from "./VideoPlayerModal";
 import UserModals from "../UserModals";
+import AudioPlayerModal from "./AudioPlayerModal";
 
 function Explorer() {
   const path = useSelector((state) => state.explorerReducer.path);
@@ -57,11 +58,18 @@ function Explorer() {
     url: null,
   });
 
+  const [audioPlayerState, setAudioPlayerState] = useState({
+    url: null,
+  });
+
   return (
     <>
       <div className="fExplorer">
         {toggleModal.show_video_modal && (
           <VideoPlayerModal videoPlayerState={videoPlayerState} />
+        )}
+        {toggleModal.show_audio_modal && (
+          <AudioPlayerModal audioPlayerState={audioPlayerState} />
         )}
         <div className="fHeader fPadding">
           <h1>Explorer</h1>
@@ -73,6 +81,7 @@ function Explorer() {
           downFunc={downDir}
           back={myhome}
           setVideoPlayerState={setVideoPlayerState}
+          setAudioPlayerState={setAudioPlayerState}
         />
       </div>
       <UserModals />
