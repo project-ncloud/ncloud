@@ -2,6 +2,7 @@ import React from "react";
 import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
 import { useDispatch, useSelector } from "react-redux";
 import { getIco } from "../../actions/explorer";
+import { GET_ACCESS, GET_QUERY, GET_TOKEN } from "../../actions/helper";
 
 const icoStyle = { marginRight: "15px", fontSize: "20px" };
 
@@ -33,8 +34,14 @@ const ItemCard = ({
   longPath.pop();
 
   const download = () => {
+    const params = {
+      path: path,
+      file_name: file_name,
+      token: GET_ACCESS(),
+      m_token: GET_TOKEN(),
+    };
     const link = document.createElement("a");
-    link.href = `http://127.0.0.1:6900/testRoute/?path=${path}&file_name=${file_name}`;
+    link.href = `http://127.0.0.1:6900/testRoute/?${GET_QUERY(params)}`;
     link.target = "blank";
     link.click();
   };
@@ -90,7 +97,12 @@ const ItemCard = ({
               <MenuItem
                 onClick={() => {
                   setVideoPlayerState({
-                    url: `http://127.0.0.1:6900/testRoute/?path=${path}&file_name=${file_name}`,
+                    url: `http://127.0.0.1:6900/testRoute/?${GET_QUERY({
+                      path: path,
+                      file_name: file_name,
+                      token: GET_ACCESS(),
+                      m_token: GET_TOKEN(),
+                    })}`,
                   });
                   dispatch({ type: "TOGGLE_VIDEO_MODAL" });
                 }}
@@ -104,7 +116,12 @@ const ItemCard = ({
             <MenuItem
               onClick={() => {
                 setAudioPlayerState({
-                  url: `http://127.0.0.1:6900/testRoute/?path=${path}&file_name=${file_name}`,
+                  url: `http://127.0.0.1:6900/testRoute/?${GET_QUERY({
+                    path: path,
+                    file_name: file_name,
+                    token: GET_ACCESS(),
+                    m_token: GET_TOKEN(),
+                  })}`,
                   name: getName(file_name),
                 });
                 dispatch({ type: "TOGGLE_AUDIO_MODAL" });

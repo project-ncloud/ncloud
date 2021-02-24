@@ -17,7 +17,7 @@ const AudioPlayerModal = ({ audioPlayerState }) => {
         style={{ width: "100%" }}
         controls
         autoPlay={Boolean(true)}
-        playing={Boolean(true)}
+        playing="true"
         src={audioPlayerState.url}
         onEnded={() => dispatch({ type: "TOGGLE_AUDIO_MODAL" })}
       >

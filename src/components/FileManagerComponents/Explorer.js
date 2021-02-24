@@ -7,6 +7,7 @@ import PathBar from "./PathBar";
 import VideoPlayerModal from "./VideoPlayerModal";
 import UserModals from "../UserModals";
 import AudioPlayerModal from "./AudioPlayerModal";
+import { GET_ACCESS, GET_AUTH_HEADER } from "../../actions/helper";
 
 function Explorer() {
   const path = useSelector((state) => state.explorerReducer.path);
@@ -24,15 +25,19 @@ function Explorer() {
   useEffect(() => {
     const openDrive = async () => {
       try {
-        const res = await axios.get(`http://${explorerConst.address}/dir/`, {
-          params: { path },
-        });
+        const res = await axios.get(
+          `http://${explorerConst.address}/dir/`,
+          GET_AUTH_HEADER({
+            path: path,
+            token: GET_ACCESS(),
+          })
+        );
         if (res.status === 200) {
           dispatch({ type: "STORE_EXPLORER_DATA", data: res.data });
         }
       } catch (Error) {}
     };
-    openDrive();
+    return openDrive();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, path]);
 

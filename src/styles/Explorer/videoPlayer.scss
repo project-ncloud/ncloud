@@ -1,14 +1,13 @@
 .player-wrapper {
   position: absolute;
   padding: 10px;
-  background: #171f2a;
+  background: #2c3a4e;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 5;
   max-height: 90%;
   min-width: 50%;
-  min-height: 50%;
 
   h1 {
     position: absolute;
@@ -28,7 +27,7 @@
     width: 25px;
     height: 25px;
     cursor: pointer;
-    transform: translateX(20px);
+    transform: translate(20px, -20px);
     background: var(--red);
     color: var(--title-bg);
   }

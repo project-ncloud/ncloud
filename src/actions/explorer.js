@@ -1,7 +1,7 @@
 import store from "../store";
 import axios from "axios";
 import { getServers } from "../userActions/server";
-import { TIMEOUT } from "./helper";
+import { GET_ACCESS, GET_AUTH_HEADER, TIMEOUT } from "./helper";
 import { get_name } from "../actions/host";
 const openDrive = () => {};
 const unknownFileIco = <i className="ri-file-unknow-line"></i>;
@@ -102,9 +102,13 @@ const dirData = async () => {
   const path = store.getState().explorerReducer.path;
   const explorerConst = store.getState().explorerControlReducer;
   try {
-    const res = await axios.get(`http://${explorerConst.address}/dir/`, {
-      params: { path },
-    });
+    const res = await axios.get(
+      `http://${explorerConst.address}/dir/`,
+      GET_AUTH_HEADER({
+        path: path,
+        token: GET_ACCESS(),
+      })
+    );
     if (res.status === 200) {
       store.dispatch({ type: "STORE_EXPLORER_DATA", data: res.data });
     }

@@ -3,7 +3,7 @@ import { React, useCallback, useRef, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { useSelector } from "react-redux";
 import { getExtension, getSizeStr, dirData } from "../../actions/explorer";
-import { TIMEOUT } from "../../actions/helper";
+import { GET_ACCESS, GET_TOKEN, TIMEOUT } from "../../actions/helper";
 import { LOGERR, LOGINFO } from "../../actions/log";
 import DragFile from "./UploadComponents/DragFile";
 import OnProcess from "./UploadComponents/OnProcess";
@@ -69,8 +69,9 @@ function UploadFile({ func, show }) {
         ),
         headers: {
           "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${GET_TOKEN()}`,
         },
-        params: { path: explorerPath },
+        params: { path: explorerPath, token: GET_ACCESS() },
       };
       const res = await axios.post(
         `http://${address}/file/upload/`,

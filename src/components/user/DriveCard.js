@@ -2,10 +2,12 @@ import axios from "axios";
 import React from "react";
 import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import useClipboard from "react-use-clipboard";
+import { GET_ACCESS, GET_AUTH_HEADER, SET_ACCESS } from "../../actions/helper";
 function DriveCard({ free, driveInfo, onClick, data }) {
   const history = useHistory();
+  const username = useSelector((state) => state.authReducer.username);
   const dispatch = useDispatch();
   function handleClick(e, data) {
     console.log();
@@ -13,9 +15,31 @@ function DriveCard({ free, driveInfo, onClick, data }) {
 
   const openDrive = async () => {
     try {
-      const res = await axios.get(`http://${data.address}/dir/`, {
-        params: { path: data.path },
-      });
+      const res = await axios.get(
+        `/explorer/access/`,
+        GET_AUTH_HEADER({
+          server_name: data.server_name,
+          address: data.address,
+          host_name: data.host_name,
+          path: data.path,
+          username: username,
+        })
+      );
+
+      if (res.status === 200) {
+        SET_ACCESS(res.data.token);
+      } else {
+        SET_ACCESS("");
+      }
+    } catch {}
+    try {
+      const res = await axios.get(
+        `http://${data.address}/dir/`,
+        GET_AUTH_HEADER({
+          path: data.path,
+          token: GET_ACCESS(),
+        })
+      );
       if (res.status === 200) {
         dispatch({ type: "STORE_EXPLORER_DATA", data: res.data });
         dispatch({
@@ -87,7 +111,7 @@ function DriveCard({ free, driveInfo, onClick, data }) {
       <ContextMenu id={data.host_name + "contextMenu"}>
         {data.is_running ? (
           <>
-            <MenuItem onClick={openDrive}>
+            <MenuItem onClick={() => openDrive()}>
               <i className="ri-folder-line purple" style={icoStyle}></i>
               Open
             </MenuItem>
