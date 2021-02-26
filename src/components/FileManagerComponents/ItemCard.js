@@ -21,8 +21,8 @@ const ItemCard = ({
   setAudioPlayerState,
 }) => {
   const dispatch = useDispatch();
-  const writable = useSelector(
-    (state) => state.explorerControlReducer.writable
+  const { writable, address } = useSelector(
+    (state) => state.explorerControlReducer
   );
   const dummyFunc = () => {
     return;
@@ -41,7 +41,7 @@ const ItemCard = ({
       m_token: GET_TOKEN(),
     };
     const link = document.createElement("a");
-    link.href = `http://127.0.0.1:6900/testRoute/?${GET_QUERY(params)}`;
+    link.href = `http://${address}/testRoute/?${GET_QUERY(params)}`;
     link.target = "blank";
     link.click();
   };
@@ -97,7 +97,7 @@ const ItemCard = ({
               <MenuItem
                 onClick={() => {
                   setVideoPlayerState({
-                    url: `http://127.0.0.1:6900/testRoute/?${GET_QUERY({
+                    url: `http://${address}/testRoute/?${GET_QUERY({
                       path: path,
                       file_name: file_name,
                       token: GET_ACCESS(),
@@ -116,7 +116,7 @@ const ItemCard = ({
             <MenuItem
               onClick={() => {
                 setAudioPlayerState({
-                  url: `http://127.0.0.1:6900/testRoute/?${GET_QUERY({
+                  url: `http://${address}/testRoute/?${GET_QUERY({
                     path: path,
                     file_name: file_name,
                     token: GET_ACCESS(),
