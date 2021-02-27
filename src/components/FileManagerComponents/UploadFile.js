@@ -79,7 +79,7 @@ function UploadFile({ func, show }) {
         options
       );
       if (res.status === 200) {
-        dirData();
+        await dirData();
         setUploadComplete(true);
       } else {
         setUploadComplete(false);
