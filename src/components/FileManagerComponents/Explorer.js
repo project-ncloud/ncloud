@@ -8,6 +8,7 @@ import VideoPlayerModal from "./VideoPlayerModal";
 import UserModals from "../UserModals";
 import AudioPlayerModal from "./AudioPlayerModal";
 import { GET_ACCESS, GET_AUTH_HEADER } from "../../actions/helper";
+import ExplorerCustomization from "./ExplorerCustomization";
 
 function Explorer() {
   const path = useSelector((state) => state.explorerReducer.path);
@@ -15,6 +16,10 @@ function Explorer() {
   const dispatch = useDispatch();
   const history = useHistory();
   const toggleModal = useSelector((state) => state.modalReducer);
+
+  const [listView, setListView] = useState(false);
+  const [searchStr, setSearchStr] = useState("");
+  const [alphaSort, setAlphaSort] = useState(true);
 
   useEffect(() => {
     if (explorerConst.path === "") {
@@ -78,7 +83,16 @@ function Explorer() {
         <div className="fHeader fPadding">
           <h1>Explorer</h1>
         </div>
+        <ExplorerCustomization
+          listView={listView}
+          setListView={setListView}
+          searchStr={searchStr}
+          setSearchStr={setSearchStr}
+          setAlphaSort={setAlphaSort}
+          sort={alphaSort}
+        />
         <PathBar path={path} />
+
         <ItemContainer
           path={path}
           upFunc={upDir}
@@ -86,6 +100,9 @@ function Explorer() {
           back={myhome}
           setVideoPlayerState={setVideoPlayerState}
           setAudioPlayerState={setAudioPlayerState}
+          listView={listView}
+          searchStr={searchStr}
+          sort={alphaSort}
         />
       </div>
       <UserModals />

@@ -144,7 +144,7 @@
   height: 100%;
 
   .fPadding {
-    padding: 1rem 3rem 1rem 3rem;
+    padding: 1rem 3rem 0rem 3rem;
   }
 
   .fHeader {
@@ -152,6 +152,64 @@
     color: var(--purple);
     font-size: 1.2rem;
     font-family: "steradian_Bold";
+    h1 {
+      margin-bottom: 0;
+    }
+  }
+
+  .fCustomization {
+    //background: red;
+    position: absolute;
+    top: 3rem;
+    right: 0rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0;
+    padding-right: 3rem;
+
+    padding-bottom: 1rem;
+    gap: 1rem;
+    i {
+      color: var(--sub-text-color);
+      font-size: 1.2rem;
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background 280ms ease, color 280ms ease;
+      &:hover {
+        background: var(--list-bg);
+      }
+      //background: var(--list-bg);
+    }
+
+    .active {
+      color: var(--purple);
+
+      &:hover {
+        cursor: unset;
+        background: transparent;
+      }
+    }
+
+    .active-btn {
+      color: var(--purple);
+    }
+
+    .sortUp {
+      color: var(--purple);
+    }
+
+    .sortDown {
+      color: var(--red);
+    }
+
+    .fCustomization-search {
+      max-width: 200px;
+      min-width: 100px;
+      height: 25px;
+    }
   }
 
   .fPathBar {
@@ -170,7 +228,7 @@
 
   .fItemContainer {
     //background: red;
-    height: calc(100% - 14.6rem);
+    height: calc(100% - 11.6rem);
     padding-bottom: 1rem;
 
     display: grid;
@@ -223,6 +281,47 @@
       font-size: 0.9rem;
       margin-top: 0.5rem;
       color: #ffffff73;
+    }
+  }
+
+  .cardContainer-list {
+    width: calc(100% - 100px) !important;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .card-list {
+    width: inherit;
+    height: 50px;
+    display: grid;
+    grid-template-columns: 0.5fr 100fr 2fr;
+    padding: 5px 10px 5px 10px;
+    margin: 0;
+
+    background: var(--backgroundColor);
+    gap: 20px;
+    align-items: center;
+    box-shadow: none;
+
+    i {
+      width: min-content;
+      font-size: 30px;
+      color: #ffffff73;
+    }
+    .fName {
+      //background: red;
+      margin: 0;
+      text-align: left;
+      //width: calc(100vw - 350px);
+
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .fSize {
+      margin: 0;
+      //background: blue;
+      text-align: end;
     }
   }
 }

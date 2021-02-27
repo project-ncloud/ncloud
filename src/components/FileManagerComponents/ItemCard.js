@@ -19,11 +19,22 @@ const ItemCard = ({
   back,
   setVideoPlayerState,
   setAudioPlayerState,
+  listView,
+  searchStr = "",
 }) => {
   const dispatch = useDispatch();
   const { writable, address } = useSelector(
     (state) => state.explorerControlReducer
   );
+
+  if (
+    !(
+      searchStr === "" ||
+      name.toUpperCase().indexOf(searchStr.toUpperCase()) > -1
+    )
+  )
+    return null;
+
   const dummyFunc = () => {
     return;
   };
@@ -54,7 +65,7 @@ const ItemCard = ({
     <>
       <ContextMenuTrigger id={name + extension + size + "contextMenu"}>
         <div
-          className="card"
+          className={`card ${listView ? "card-list" : null}`}
           onClick={() => {
             up ? upFunc() : dummyFunc();
           }}

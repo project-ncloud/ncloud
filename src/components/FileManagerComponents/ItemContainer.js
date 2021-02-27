@@ -9,21 +9,36 @@ function ItemContainer({
   back,
   setVideoPlayerState,
   setAudioPlayerState,
+  listView,
+  searchStr,
+  sort,
 }) {
   const itemData = useSelector((state) => state.explorerReducer.data);
+  const compare = (a, b) => {
+    if (sort) return a.name.localeCompare(b.name);
+
+    const ret = a.name.localeCompare(b.name);
+    return ret === -1 ? 1 : ret === 1 ? -1 : ret;
+  };
   return (
-    <div className="fItemContainer fPadding cardContainer">
+    <div
+      className={`fItemContainer fPadding cardContainer ${
+        listView ? "cardContainer-list" : null
+      }`}
+    >
       <ItemCard
         name="Go Back"
         path={path}
         up={true}
         upFunc={upFunc}
         back={back}
+        listView={listView}
       />
       {itemData
         .filter((item) => {
           return item.is_dir === true;
         })
+        .sort(compare)
         .map((item) => {
           return (
             <ItemCard
@@ -35,13 +50,17 @@ function ItemContainer({
               extension={item.extension}
               date="69th June, 6969"
               downFunc={downFunc}
+              listView={listView}
+              searchStr={searchStr}
             />
           );
         })}
+
       {itemData
         .filter((item) => {
           return item.is_dir === false;
         })
+        .sort(compare)
         .map((item) => {
           return (
             <ItemCard
@@ -54,6 +73,8 @@ function ItemContainer({
               date="69th June, 6969"
               setVideoPlayerState={setVideoPlayerState}
               setAudioPlayerState={setAudioPlayerState}
+              listView={listView}
+              searchStr={searchStr}
             />
           );
         })}
