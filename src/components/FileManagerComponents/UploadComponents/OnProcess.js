@@ -1,6 +1,6 @@
 import React from "react";
 
-function OnProcess({ percentage, result }) {
+function OnProcess({ percentage = 100, result }) {
   if (percentage !== 100 || result !== null) return null;
   return (
     <div style={{ width: "100%", height: "100%" }}>
