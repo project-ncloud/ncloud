@@ -1,0 +1,145 @@
+@keyframes uploadingBarAnima {
+  0% {
+    background: var(--purple);
+  }
+
+  25% {
+    background: var(--cyan);
+  }
+
+  50% {
+    background: var(--red);
+  }
+
+  75% {
+    background: var(--yellow);
+  }
+}
+
+.wrapper {
+  background: var(--semi-transparent);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: grid;
+  place-content: center;
+}
+
+.CreateFolderContainer {
+  width: 400px;
+  min-height: 200px;
+  height: auto;
+  padding-bottom: 20px;
+  z-index: 5;
+
+  * {
+    outline: none;
+  }
+
+  margin-top: 100px;
+  margin-left: 100px;
+  background: var(--tile-bg);
+  border-radius: 5px;
+  box-shadow: 0px 10px 10px 10px #0000001e;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  animation: startUp 300ms ease-in-out;
+}
+
+.topBar {
+  //background: blue;
+  height: calc(50px - 20px);
+  width: calc(100% - 20px);
+  padding: 10px;
+
+  .topBar-title {
+    color: var(--sub-text-color);
+    font-family: "productSans_bold";
+    letter-spacing: 1px;
+    margin-left: 10px;
+  }
+
+  i {
+    cursor: pointer;
+    transition: background 280ms ease;
+
+    &:hover {
+      background: var(--list-bg);
+    }
+  }
+}
+
+.dropZone {
+  height: 100%;
+  width: 100%;
+  color: #8fa6c0b6;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  i {
+    font-size: 5rem;
+  }
+
+  p {
+    width: 70%;
+    font-family: "productSans_bold";
+    text-align: center;
+    line-height: 25px;
+    user-select: none;
+  }
+
+  .fileInfo {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    p {
+      margin-bottom: 0px;
+    }
+
+    .fileName {
+      word-wrap: break-word;
+    }
+
+    .fileSize {
+      color: var(--sub-text-color);
+      font-size: 20px;
+      opacity: 0.8;
+    }
+  }
+}
+
+.uploadingBar-container {
+  position: relative;
+  width: 80%;
+  height: 7px;
+  border-radius: 50px;
+  background: var(--list-bg);
+  .uploadingBar {
+    position: absolute;
+    height: inherit;
+    width: 20%;
+    background: var(--purple);
+    border-radius: inherit;
+    transition: width 280ms ease;
+  }
+  .uploadingBar-anima {
+    animation: uploadingBarAnima 2000ms ease-in-out infinite;
+  }
+}
+
+.create-folder-input {
+  height: 25px;
+}
