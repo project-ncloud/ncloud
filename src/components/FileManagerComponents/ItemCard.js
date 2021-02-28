@@ -19,6 +19,7 @@ const ItemCard = ({
   back,
   setVideoPlayerState,
   setAudioPlayerState,
+  setImageViewerState,
   listView,
   searchStr = "",
 }) => {
@@ -73,7 +74,7 @@ const ItemCard = ({
             isDir ? downFunc(name) : up ? back() : dummyFunc();
           }}
         >
-          {getIco(extension, isDir, up)}
+          {getIco(extension?.toLowerCase(), isDir, up)}
           <p className="fName">{name}</p>
           {!up && !isDir ? <p className="fSize">{size}</p> : false}
         </div>
@@ -142,6 +143,27 @@ const ItemCard = ({
               Play
             </MenuItem>
           )}
+
+          {!isDir &&
+            ".jpg.jpeg.bmp.png.svg".includes(extension?.toLowerCase()) && (
+              <MenuItem
+                onClick={() => {
+                  setImageViewerState({
+                    url: `http://${address}/testRoute/?${GET_QUERY({
+                      path: path,
+                      file_name: file_name,
+                      token: GET_ACCESS(),
+                      m_token: GET_TOKEN(),
+                    })}`,
+                    name: getName(file_name),
+                  });
+                  dispatch({ type: "TOGGLE_IMAGE_MODAL" });
+                }}
+              >
+                <i className="ri-play-fill purple" style={icoStyle}></i>
+                View
+              </MenuItem>
+            )}
 
           {up || !writable ? null : (
             <MenuItem>

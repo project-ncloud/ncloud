@@ -9,6 +9,7 @@ import UserModals from "../UserModals";
 import AudioPlayerModal from "./AudioPlayerModal";
 import { GET_ACCESS, GET_AUTH_HEADER } from "../../actions/helper";
 import ExplorerCustomization from "./ExplorerCustomization";
+import ImageViewerModal from "./ImageVIewerModal";
 
 function Explorer() {
   const path = useSelector((state) => state.explorerReducer.path);
@@ -71,6 +72,11 @@ function Explorer() {
     url: null,
   });
 
+  const [imageViewerState, setImageViewerState] = useState({
+    name: "",
+    url: null,
+  });
+
   return (
     <>
       <div className="fExplorer">
@@ -79,6 +85,9 @@ function Explorer() {
         )}
         {toggleModal.show_audio_modal && (
           <AudioPlayerModal audioPlayerState={audioPlayerState} />
+        )}
+        {toggleModal.show_image_modal && (
+          <ImageViewerModal imageViewerState={imageViewerState} />
         )}
         <div className="fHeader fPadding">
           <h1>Explorer</h1>
@@ -100,6 +109,7 @@ function Explorer() {
           back={myhome}
           setVideoPlayerState={setVideoPlayerState}
           setAudioPlayerState={setAudioPlayerState}
+          setImageViewerState={setImageViewerState}
           listView={listView}
           searchStr={searchStr}
           sort={alphaSort}

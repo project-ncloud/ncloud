@@ -9,6 +9,7 @@ function ItemContainer({
   back,
   setVideoPlayerState,
   setAudioPlayerState,
+  setImageViewerState,
   listView,
   searchStr,
   sort,
@@ -73,6 +74,7 @@ function ItemContainer({
               date="69th June, 6969"
               setVideoPlayerState={setVideoPlayerState}
               setAudioPlayerState={setAudioPlayerState}
+              setImageViewerState={setImageViewerState}
               listView={listView}
               searchStr={searchStr}
             />

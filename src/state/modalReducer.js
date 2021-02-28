@@ -20,6 +20,7 @@ const INIT = {
   show_about: false,
   show_video_modal: false,
   show_audio_modal: false,
+  show_image_modal: false,
 };
 
 const modalReducer = (state = INIT, action) => {
@@ -69,6 +70,8 @@ const modalReducer = (state = INIT, action) => {
       return { ...state, show_video_modal: !state.show_video_modal };
     case "TOGGLE_AUDIO_MODAL":
       return { ...state, show_audio_modal: !state.show_audio_modal };
+    case "TOGGLE_IMAGE_MODAL":
+      return { ...state, show_image_modal: !state.show_image_modal };
 
     case "RESET_MODAL_DATA":
       return INIT;
