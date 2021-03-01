@@ -1,6 +1,7 @@
 import React from "react";
 import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { getIco } from "../../actions/explorer";
 import { GET_ACCESS, GET_QUERY, GET_TOKEN } from "../../actions/helper";
 
@@ -24,6 +25,7 @@ const ItemCard = ({
   searchStr = "",
 }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const { writable, address } = useSelector(
     (state) => state.explorerControlReducer
   );
@@ -164,6 +166,28 @@ const ItemCard = ({
                 View
               </MenuItem>
             )}
+
+          {!isDir && ".docx.pdf".includes(extension?.toLowerCase()) && (
+            <MenuItem
+              onClick={() => {
+                const BLK = {
+                  url: `http://${address}/testRoute/?${GET_QUERY({
+                    path: path,
+                    file_name: file_name,
+                    token: GET_ACCESS(),
+                    m_token: GET_TOKEN(),
+                  })}`,
+                  name: getName(file_name),
+                  type: extension.substr(1, extension.length),
+                };
+
+                history.push("/view", BLK);
+              }}
+            >
+              <i className="ri-play-fill purple" style={icoStyle}></i>
+              Open Document
+            </MenuItem>
+          )}
 
           {up || !writable ? null : (
             <MenuItem>
