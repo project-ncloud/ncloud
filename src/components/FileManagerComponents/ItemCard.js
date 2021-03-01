@@ -162,7 +162,7 @@ const ItemCard = ({
                   dispatch({ type: "TOGGLE_IMAGE_MODAL" });
                 }}
               >
-                <i className="ri-play-fill purple" style={icoStyle}></i>
+                <i className="ri-image-line purple" style={icoStyle}></i>
                 View
               </MenuItem>
             )}
@@ -184,7 +184,7 @@ const ItemCard = ({
                 history.push("/view", BLK);
               }}
             >
-              <i className="ri-play-fill purple" style={icoStyle}></i>
+              <i className="ri-file-list-2-line purple" style={icoStyle}></i>
               Open Document
             </MenuItem>
           )}

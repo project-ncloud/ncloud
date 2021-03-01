@@ -1,13 +1,9 @@
+/* eslint-disable no-useless-escape */
 import axios from "axios";
 import { React, useState } from "react";
 import { useSelector } from "react-redux";
-import { getExtension, getSizeStr, dirData } from "../../actions/explorer";
-import {
-  AUTH_HEADER,
-  GET_ACCESS,
-  GET_TOKEN,
-  TIMEOUT,
-} from "../../actions/helper";
+import { dirData } from "../../actions/explorer";
+import { AUTH_HEADER, GET_ACCESS, TIMEOUT } from "../../actions/helper";
 import "../../styles/Explorer/createFolder.scss";
 import CreateFolderResult from "./UploadComponents/CreateFolderResult";
 import OnProcess from "./UploadComponents/OnProcess";
