@@ -7,7 +7,7 @@ import DriveCard from "./DriveCard";
 function DriveContainer({ data }) {
   useEffect(() => {
     async function xx() {
-      await TIMEOUT(2000);
+      await TIMEOUT(100);
       if (is_user_admin()) {
         await get_users();
       }

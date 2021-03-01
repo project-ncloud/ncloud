@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { dirData } from "../../actions/explorer";
+import { TIMEOUT } from "../../actions/helper";
 
 function ExplorerCustomization({
   listView,
@@ -8,11 +10,26 @@ function ExplorerCustomization({
   setAlphaSort,
   sort,
 }) {
+  const [loading, setLoading] = useState(false);
   const switchSort = () => {
     setAlphaSort(!sort);
   };
+
+  const reloadDir = async () => {
+    setLoading(true);
+    await TIMEOUT(1000);
+    await dirData();
+    await TIMEOUT(1000);
+    setLoading(false);
+  };
   return (
     <div className="fCustomization fPadding">
+      <i
+        className={`ri-refresh-line ${
+          loading ? "active reload-loading" : null
+        }`}
+        onClick={() => reloadDir()}
+      ></i>
       {listView ? (
         <>
           <i
