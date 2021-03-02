@@ -7,10 +7,24 @@ import react from "../../styles/res/img/react.png";
 import samba from "../../styles/res/img/samba.png";
 import scss from "../../styles/res/img/scss.png";
 import jwt from "../../styles/res/img/jwt.png";
+import remixicon from "../../styles/res/img/remixicon.png";
 import "../../styles/modal/modalBase.scss";
 import "../../styles/modal/about.scss";
 
 function InfoModal({ showMe, func, specClass, width = "600px" }) {
+  const knowMore = (no) => {
+    const links = [
+      "https://github.com/DNI9",
+      "https://github.com/epicX67",
+      "",
+      "",
+    ];
+    const link = document.createElement("a");
+    link.href = links[no];
+    link.target = "blank";
+    link.click();
+  };
+
   return (
     <div className={`overlayContainer ${showMe ? null : "hide"}`}>
       <div className="overlayWrapper" onClick={func}></div>
@@ -56,6 +70,9 @@ function InfoModal({ showMe, func, specClass, width = "600px" }) {
             <a href="https://sass-lang.com/" target="blank">
               <img alt="Scss" src={scss}></img>
             </a>
+            <a href="https://remixicon.com/" target="blank">
+              <img alt="Remix Icons" src={remixicon}></img>
+            </a>
             <a href="https://jwt.io/" target="blank">
               <img alt="JWT" src={jwt}></img>
             </a>
@@ -80,7 +97,7 @@ function InfoModal({ showMe, func, specClass, width = "600px" }) {
             <label>
               <div className="labelInfo">
                 <i className="ri-user-6-fill"></i>
-                Mr. Surajit Goon
+                Surajit Goon
               </div>
             </label>
           </div>
@@ -124,7 +141,7 @@ function InfoModal({ showMe, func, specClass, width = "600px" }) {
 
           <div className="row aboutRow about-sub-head">Our team</div>
           <div className="row checkboxRow">
-            <label>
+            <label onClick={() => knowMore(0)}>
               <div className="labelInfo">
                 <i className="ri-user-5-fill"></i>
                 Indrajit Sarkar
@@ -132,7 +149,7 @@ function InfoModal({ showMe, func, specClass, width = "600px" }) {
             </label>
           </div>
           <div className="row checkboxRow">
-            <label>
+            <label onClick={() => knowMore(1)}>
               <div className="labelInfo">
                 <i className="ri-user-smile-fill"></i>
                 Sourav Gain
