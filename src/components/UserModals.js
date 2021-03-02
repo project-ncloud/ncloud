@@ -4,6 +4,7 @@ import Modal from "./modal/Modal";
 import SharedUser from "./modal/SharedUser";
 import AddSharedUser from "./modal/AddSharedUser";
 import SharedPreferences from "./modal/SharedPreferences";
+import InfoModal from "./modal/InfoModal";
 
 const UserModals = () => {
   const toggleModal = useSelector((state) => state.modalReducer);
@@ -45,6 +46,15 @@ const UserModals = () => {
       >
         <SharedPreferences />
       </Modal>
+
+      <InfoModal
+        name="Host Preferences"
+        specClass="modalList addServer"
+        showMe={toggleModal.show_about}
+        func={() => {
+          dispatch({ type: "TOGGLE_SHOW_ABOUT", data: false });
+        }}
+      />
     </>
   );
 };

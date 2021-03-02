@@ -43,6 +43,7 @@ function User() {
 
   return (
     <>
+      <UserModals />
       {busy && <LoadDriveOverlay />}
       <Header />
       <div className="driveGridHead">Drives</div>
@@ -53,7 +54,6 @@ function User() {
           <DriveContainer key="sharedDrives" data={sharedServers} />
         </>
       )}
-      <UserModals />
     </>
   );
 }
