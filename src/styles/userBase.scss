@@ -151,6 +151,10 @@
         div {
           &:first-child {
             font-size: 25px;
+            white-space: nowrap;
+            overflow-x: hidden;
+            text-overflow: ellipsis;
+            width: 220px;
           }
 
           &:last-child {
