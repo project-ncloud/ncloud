@@ -95,9 +95,27 @@ const remove_shared_user = async (block) => {
   }
 };
 
+const changeSharedAccess = async (block) => {
+  try {
+    const res = await axios.post("/userAdmin/writable/", block, AUTH_HEADER());
+    if (res.status === 200) {
+      if (!res.data.status) {
+        throw Error(res.data.msg);
+      }
+      LOGINFO(res.data.msg);
+      return true;
+      //store.dispatch({ type: "PUSH_SUSER", data: block.username });
+    }
+  } catch (Error) {
+    LOGERR(Error.message);
+    return false;
+  }
+};
+
 export {
   setUserAdmin,
   get_AddSharedUsers,
   add_shared_user,
   remove_shared_user,
+  changeSharedAccess,
 };
