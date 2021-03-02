@@ -12,7 +12,7 @@ function DriveContainer({ data }) {
         await get_users();
       }
     }
-    xx();
+    return xx();
   }, []);
   return (
     <div className="driveContainer">

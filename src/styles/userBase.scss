@@ -18,6 +18,7 @@
   top: 0;
   position: sticky;
   overflow-x: hidden;
+  z-index: 50;
 
   .mainLogo {
     transform: scale(0.8);
@@ -231,5 +232,21 @@
     &:hover {
       filter: brightness(var(--brightness-filter));
     }
+  }
+}
+
+.load-drive-overlay {
+  background: var(--semi-transparent);
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  z-index: 40;
+  display: grid;
+  place-content: center;
+  i {
+    font-size: 5rem;
+    animation: reloadLoading 1000ms linear infinite;
   }
 }
