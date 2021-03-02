@@ -1,9 +1,15 @@
+import axios from "axios";
 import React from "react";
 import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { getIco } from "../../actions/explorer";
-import { GET_ACCESS, GET_QUERY, GET_TOKEN } from "../../actions/helper";
+import { dirData, getIco } from "../../actions/explorer";
+import {
+  AUTH_HEADER,
+  GET_ACCESS,
+  GET_QUERY,
+  GET_TOKEN,
+} from "../../actions/helper";
 
 const icoStyle = { marginRight: "15px", fontSize: "20px" };
 
@@ -29,6 +35,7 @@ const ItemCard = ({
   const { writable, address } = useSelector(
     (state) => state.explorerControlReducer
   );
+  const explorerPath = useSelector((state) => state.explorerReducer.path);
 
   if (
     !(
@@ -58,6 +65,46 @@ const ItemCard = ({
     link.href = `http://${address}/testRoute/?${GET_QUERY(params)}`;
     link.target = "blank";
     link.click();
+  };
+
+  const removeFolder = async () => {
+    try {
+      const res = await axios.delete(
+        `http://${address}/dir/remove/`,
+        AUTH_HEADER({
+          path: explorerPath,
+          folder_name: name,
+          token: GET_ACCESS(),
+        })
+      );
+      if (res.status === 200) {
+        await dirData();
+      } else {
+        throw Error("Error ocurred while creating folder");
+      }
+    } catch (Error) {
+      //Pending
+    }
+  };
+
+  const removeFile = async () => {
+    try {
+      const res = await axios.delete(
+        `http://${address}/file/remove/`,
+        AUTH_HEADER({
+          path: explorerPath,
+          file_name: name,
+          token: GET_ACCESS(),
+        })
+      );
+      if (res.status === 200) {
+        await dirData();
+      } else {
+        throw Error("Error ocurred while creating folder");
+      }
+    } catch (Error) {
+      //Pending
+    }
   };
 
   const getName = (fileName) => {
@@ -190,7 +237,11 @@ const ItemCard = ({
           )}
 
           {up || !writable ? null : (
-            <MenuItem>
+            <MenuItem
+              onClick={() => {
+                isDir ? removeFolder() : removeFile();
+              }}
+            >
               <i className="ri-delete-bin-line red" style={icoStyle}></i>
               {isDir ? "Remove Folder" : "Remove File"}
             </MenuItem>
