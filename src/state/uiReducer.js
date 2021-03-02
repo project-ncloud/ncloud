@@ -10,7 +10,7 @@ const INIT = [
 ];
 
 // eslint-disable-next-line no-unused-vars
-const uiReducer = (state = INIT, action) => {
+const uiReducer = (state = INIT.slice(), action) => {
   switch (action.type) {
     case "TOGGLE_UI":
       // eslint-disable-next-line array-callback-return
@@ -20,7 +20,16 @@ const uiReducer = (state = INIT, action) => {
       });
       return fState;
     case "RESET_UI":
-      return INIT;
+      return [
+        {
+          name: "showDashboard",
+          value: true,
+        },
+        {
+          name: "showServerContainer",
+          value: false,
+        },
+      ];
     default:
       return state;
   }
