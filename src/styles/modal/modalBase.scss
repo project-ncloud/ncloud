@@ -7,6 +7,7 @@
   place-items: center;
   transition: opacity 280ms;
   z-index: 69;
+  animation: startUp 400ms ease-in-out;
 }
 
 .overlayWrapper {
