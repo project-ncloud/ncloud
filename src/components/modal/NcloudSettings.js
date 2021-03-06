@@ -33,7 +33,10 @@ function NcloudSettings({ func }) {
 
   const fetchConfig = async () => {
     try {
-      const res = await axios.get("/ncloud/config/", AUTH_HEADER());
+      const res = await axios.get(
+        process.env.REACT_APP_MASTER_URL + "/ncloud/config/",
+        AUTH_HEADER()
+      );
       if (res.status === 200 && res.data.status === true) {
         setIState(res.data.data);
       }
@@ -46,7 +49,11 @@ function NcloudSettings({ func }) {
   const applyConfig = async () => {
     setBusy(true);
     try {
-      const res = await axios.post("/ncloud/config/", iState, AUTH_HEADER());
+      const res = await axios.post(
+        process.env.REACT_APP_MASTER_URL + "/ncloud/config/",
+        iState,
+        AUTH_HEADER()
+      );
       if (res.status === 200 && res.data.status === true) {
         LOGINFO("Configuration Applied", "NCLOUD CONFIG");
         setBusy(false);

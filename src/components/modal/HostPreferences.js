@@ -56,7 +56,7 @@ function HostPreferences({ func }) {
     setBusy(true);
     try {
       const res = await axios.post(
-        "/server/host/config/",
+        process.env.REACT_APP_MASTER_URL + "/server/host/config/",
         iState,
         AUTH_HEADER()
       );

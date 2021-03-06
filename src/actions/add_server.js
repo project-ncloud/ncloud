@@ -8,7 +8,11 @@ const add_server = async (block) => {
       throw Error("Empty data");
     }
 
-    const res = await axios.post("/server/", block, AUTH_HEADER());
+    const res = await axios.post(
+      process.env.REACT_APP_MASTER_URL + "/server/",
+      block,
+      AUTH_HEADER()
+    );
 
     if (res.data.status === false) {
       return {

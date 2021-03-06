@@ -6,7 +6,7 @@ async function getServers() {
   const loginInfo = store.getState().authReducer;
   try {
     const res = await axios.get(
-      `/user/servers/?username=${loginInfo.username}`,
+      `${process.env.REACT_APP_MASTER_URL}/user/servers/?username=${loginInfo.username}`,
       AUTH_HEADER()
     );
     if (res.status === 200) {

@@ -23,7 +23,11 @@ const setUserAdmin = async () => {
   };
 
   try {
-    const res = await axios.post(urlString, block, AUTH_HEADER());
+    const res = await axios.post(
+      process.env.REACT_APP_MASTER_URL + urlString,
+      block,
+      AUTH_HEADER()
+    );
 
     if (res.data.status === false) {
       return {
@@ -61,7 +65,7 @@ const get_AddSharedUsers = () => {
 const add_shared_user = async (block) => {
   try {
     const res = await axios.post(
-      "/userAdmin/sharedUser/",
+      process.env.REACT_APP_MASTER_URL + "/userAdmin/sharedUser/",
       block,
       AUTH_HEADER()
     );
@@ -80,7 +84,7 @@ const add_shared_user = async (block) => {
 const remove_shared_user = async (block) => {
   try {
     const res = await axios.delete(
-      "/userAdmin/sharedUser/",
+      process.env.REACT_APP_MASTER_URL + "/userAdmin/sharedUser/",
       AUTH_HEADER(block)
     );
     if (res.status === 200) {
@@ -97,7 +101,11 @@ const remove_shared_user = async (block) => {
 
 const changeSharedAccess = async (block) => {
   try {
-    const res = await axios.post("/userAdmin/writable/", block, AUTH_HEADER());
+    const res = await axios.post(
+      process.env.REACT_APP_MASTER_URL + "/userAdmin/writable/",
+      block,
+      AUTH_HEADER()
+    );
     if (res.status === 200) {
       if (!res.data.status) {
         throw Error(res.data.msg);

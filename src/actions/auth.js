@@ -12,10 +12,15 @@ const INITIAL_VALUE = {
 const LOGIN = async (data) => {
   try {
     const is_adminReq = data.username.toLowerCase() === "admin" ? true : false;
-    const res = await axios.post(is_adminReq ? "/admin/" : "/login/", {
-      username: data.username.toLowerCase(),
-      password: data.password,
-    });
+    const res = await axios.post(
+      `${process.env.REACT_APP_MASTER_URL}${
+        is_adminReq ? "/admin/" : "/login/"
+      }`,
+      {
+        username: data.username.toLowerCase(),
+        password: data.password,
+      }
+    );
     const dataN = res.data;
     if (
       res.status !== 200 ||
@@ -75,7 +80,10 @@ const LOGOUT = async () => {
 
 const IS_TOKEN_VALID = async (token) => {
   try {
-    const res = await axios.get("/user/", AUTH_HEADER());
+    const res = await axios.get(
+      process.env.REACT_APP_MASTER_URL + "/user/",
+      AUTH_HEADER()
+    );
     return {
       status: true,
       data: res.data,
@@ -89,12 +97,15 @@ const IS_TOKEN_VALID = async (token) => {
 
 const REGISTER = async (data) => {
   try {
-    const res = await axios.post("/register/", {
-      name: data.name,
-      username: data.username.toLowerCase(),
-      password: data.password,
-      KEY: "st67hq",
-    });
+    const res = await axios.post(
+      process.env.REACT_APP_MASTER_URL + "/register/",
+      {
+        name: data.name,
+        username: data.username.toLowerCase(),
+        password: data.password,
+        KEY: "st67hq",
+      }
+    );
     const dataN = res.data;
 
     return {

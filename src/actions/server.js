@@ -5,7 +5,8 @@ import { LOGINFO, LOGERR, LOGWARN } from "./log";
 
 async function getServers() {
   try {
-    const res = await axios.get("/servers/");
+    const res = await axios.get(process.env.REACT_APP_MASTER_URL + "/servers/");
+    console.log(res);
     if (res.status === 200) {
       store.dispatch({ type: "STORE_SERVER_DATA", data: res.data });
       store.dispatch({ type: "RESET_ALIVE_COUNT" });
@@ -31,7 +32,9 @@ async function reFetchServer(item) {
 
 async function getServerStatus(address) {
   try {
-    const res = await axios.get(`/server/control/${address}`);
+    const res = await axios.get(
+      `${process.env.REACT_APP_MASTER_URL}/server/control/${address}`
+    );
     if (res.status === 200 && res.data.status === true) {
       if (res.data.is_running) {
         LOGINFO(`${address} is running`);
@@ -50,7 +53,7 @@ async function getServerStatus(address) {
 const removeServer = async (name, address) => {
   try {
     const res = await axios.delete(
-      "/server/",
+      process.env.REACT_APP_MASTER_URL + "/server/",
       AUTH_HEADER({
         name: name,
         address: address,

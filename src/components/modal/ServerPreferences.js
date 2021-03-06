@@ -46,7 +46,11 @@ function ServerPreferences({ func }) {
   const applyConfig = async () => {
     setBusy(true);
     try {
-      const res = await axios.put("/server/", iState, AUTH_HEADER());
+      const res = await axios.put(
+        process.env.REACT_APP_MASTER_URL + "/server/",
+        iState,
+        AUTH_HEADER()
+      );
       if (res.status === 200 && res.data.status === true) {
         LOGINFO("Configuration Applied", iState.current_name);
         await getServers();

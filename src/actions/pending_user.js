@@ -8,7 +8,9 @@ import { getServers } from "./server";
 const get_pending_users = async () => {
   try {
     const res = await axios.get(
-      `/api/users/?${new URLSearchParams({ type: "pending" }).toString()}`,
+      `${process.env.REACT_APP_MASTER_URL}/api/users/?${new URLSearchParams({
+        type: "pending",
+      }).toString()}`,
       AUTH_HEADER()
     );
     if (res.data.status !== true) {
@@ -27,7 +29,7 @@ const get_pending_users = async () => {
 const removeUser = async (username, type = "pending") => {
   try {
     const res = await axios.delete(
-      "/api/user/",
+      process.env.REACT_APP_MASTER_URL + "/api/user/",
       AUTH_HEADER({
         username,
         type,
@@ -46,7 +48,7 @@ const removeUser = async (username, type = "pending") => {
 const approveUser = async (username, type = "pending") => {
   try {
     const res = await axios.post(
-      "/api/user/",
+      process.env.REACT_APP_MASTER_URL + "/api/user/",
       {
         username,
         type,

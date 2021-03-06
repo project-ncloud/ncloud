@@ -13,7 +13,11 @@ const create_host = async (block) => {
       throw Error("Empty data");
     }
 
-    const res = await axios.post("/server/host/", block, AUTH_HEADER());
+    const res = await axios.post(
+      process.env.REACT_APP_MASTER_URL + "/server/host/",
+      block,
+      AUTH_HEADER()
+    );
 
     if (res.data.status === false) {
       return {
@@ -36,7 +40,10 @@ const create_host = async (block) => {
 
 const remove_host = async (block) => {
   try {
-    const res = await axios.delete("/server/host/", AUTH_HEADER(block));
+    const res = await axios.delete(
+      process.env.REACT_APP_MASTER_URL + "/server/host/",
+      AUTH_HEADER(block)
+    );
 
     if (res.data.status === false) {
       return {

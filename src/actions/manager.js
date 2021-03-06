@@ -21,7 +21,7 @@ const create_manager = async (block) => {
     }
 
     const res = await axios.post(
-      "/manager/",
+      process.env.REACT_APP_MASTER_URL + "/manager/",
       {
         name: block.name,
         username: block.username,
@@ -51,7 +51,10 @@ const create_manager = async (block) => {
 
 const get_managers = async () => {
   try {
-    const res = await axios.get("/managers/", AUTH_HEADER());
+    const res = await axios.get(
+      process.env.REACT_APP_MASTER_URL + "/managers/",
+      AUTH_HEADER()
+    );
     if (res.data.status !== true) {
       throw Error("Error while fetching users.");
     }
@@ -67,7 +70,10 @@ const get_managers = async () => {
 
 const remove_manager = async (username) => {
   try {
-    const res = await axios.delete("/manager/", AUTH_HEADER({ username }));
+    const res = await axios.delete(
+      process.env.REACT_APP_MASTER_URL + "/manager/",
+      AUTH_HEADER({ username })
+    );
     if (res.data.status === true) {
       LOGINFO(`${username} removed from manager list`);
       return;

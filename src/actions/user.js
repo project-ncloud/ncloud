@@ -6,7 +6,10 @@ import { removeUser, get_pending_users } from "./pending_user";
 
 const get_users = async () => {
   try {
-    const res = await axios.get("/api/users/", AUTH_HEADER());
+    const res = await axios.get(
+      process.env.REACT_APP_MASTER_URL + "/api/users/",
+      AUTH_HEADER()
+    );
     if (res.data.status !== true) {
       throw Error("Error while fetching users.");
     }

@@ -8,7 +8,10 @@ import { getServers, reFetchServer } from "./server";
 
 const get_validUsers = async () => {
   try {
-    const res = await axios.get("/api/users/", AUTH_HEADER());
+    const res = await axios.get(
+      process.env.REACT_APP_MASTER_URL + "/api/users/",
+      AUTH_HEADER()
+    );
     if (res.data.status !== true) {
       throw Error("Error while fetching users.");
     }
@@ -44,7 +47,7 @@ const add_validUsers = async () => {
 
   try {
     const res = await axios.post(
-      "/server/host/users/",
+      process.env.REACT_APP_MASTER_URL + "/server/host/users/",
       {
         users,
         address,
@@ -91,7 +94,7 @@ const remove_validUsers = async () => {
 
   try {
     const res = await axios.delete(
-      "/server/host/users/",
+      process.env.REACT_APP_MASTER_URL + "/server/host/users/",
       AUTH_HEADER({
         users,
         address,

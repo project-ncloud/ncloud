@@ -16,7 +16,7 @@ function DriveCard({ free, driveInfo, onClick, data }) {
   const openDrive = async () => {
     try {
       const res = await axios.get(
-        `/explorer/access/`,
+        `${process.env.REACT_APP_MASTER_URL}/explorer/access/`,
         GET_AUTH_HEADER({
           server_name: data.server_name,
           address: data.address,

@@ -17,10 +17,13 @@ function SidebarListElement({ data, func }) {
 
   const toggleServer = async (address) => {
     try {
-      const res = await axios.post("/server/control/", {
-        address: address,
-        action: !state,
-      });
+      const res = await axios.post(
+        process.env.REACT_APP_MASTER_URL + "/server/control/",
+        {
+          address: address,
+          action: !state,
+        }
+      );
       if (res.status === 200) {
         setState(!state);
         return;
